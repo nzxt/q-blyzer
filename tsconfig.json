@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "target": "es6",
+    "strict": true,
+    "experimentalDecorators": true,
+    "noImplicitAny": false,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "baseUrl": "."
+  },
+  "include": [
+    "./src/**/*"
+  ],
+  "types": [
+    "@types/q",
+    "@types/node"
+  ]
+}
