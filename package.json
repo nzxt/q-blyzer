@@ -10,6 +10,7 @@
     "dev": "quasar dev",
     "build": "quasar build",
     "build:pwa": "quasar build -m pwa",
+    "build:cordova": "quasar build -m cordova -T android",
     "lint": "eslint --fix --ext .js,.vue src",
     "test": "echo \"No test specified\" && exit 0",
     "sync": "syncyarnlock -s -k"
@@ -27,6 +28,7 @@
     "@kazupon/vue-i18n-loader": "^0.3.0",
     "@quasar/app": "^1.0.4",
     "@quasar/quasar-app-extension-dotenv": "^1.0.0-beta.10",
+    "@quasar/quasar-app-extension-icon-genie": "^1.0.1",
     "@quasar/quasar-app-extension-typescript": "^1.0.0-alpha.14",
     "@types/node": "11.9.5",
     "@typescript-eslint/eslint-plugin": "^1.11.0",
