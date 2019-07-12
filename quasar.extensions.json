@@ -12,7 +12,7 @@
   },
   "@quasar/icon-genie": {
     "minify_dev": "pngquant",
-    "minify_build": "pngcrush",
+    "minify_build": "optipng",
     "cordova": {
       "background_color": "#ffffff",
       "splashscreen_type": "pure"
