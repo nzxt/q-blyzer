@@ -1,8 +1,8 @@
 {
   "name": "blyzer-quasar",
   "version": "0.0.1",
-  "description": "My glorious Blyzer app build on Quasar Framework.",
-  "productName": "Blyzer App",
+  "description": "My glorious Boccialyzer application build on Quasar Framework.",
+  "productName": "Boccialyzer",
   "cordovaId": "dev.molfar.blyzer.app",
   "author": "mmolfarDevs <molfar.devs@gmail.com>",
   "private": true,
