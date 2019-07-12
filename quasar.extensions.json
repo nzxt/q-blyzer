@@ -19,7 +19,11 @@
     },
     "build_always": false,
     "__internal": {
-      "dev": {},
+      "dev": {
+        "spa": {
+          "iconHash": "2e44cfba9e410c76dc366af9e2d9f94c"
+        }
+      },
       "build": {}
     }
   }
