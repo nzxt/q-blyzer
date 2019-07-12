@@ -29,23 +29,23 @@
 
         q-item(clickable exact to='/')
           q-item-section(avatar)
-            q-icon(name='mdi-school')
+            q-icon(name='mdi-school' size='36px')
           q-item-section
-            q-item-label Index Page
+            q-item-label.text-subtitle1 Index Page
             q-item-label(caption) Go to Main Page
 
         q-item(clickable exact to='trainings')
           q-item-section(avatar)
-            q-icon(name='mdi-github-circle')
+            q-icon(name='mdi-github-circle' size='36px')
           q-item-section
-            q-item-label All Trainings
+            q-item-label.text-subtitle1 All Trainings
             q-item-label(caption) Go to trainings list
 
         q-item(clickable  exact to='matches')
           q-item-section(avatar)
-            q-icon(name='mdi-chat')
+            q-icon(name='mdi-chat' size='36px')
           q-item-section
-            q-item-label All Matches
+            q-item-label.text-subtitle1 All Matches
             q-item-label(caption) Go to mathes list
 
     q-page-container
