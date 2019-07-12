@@ -24,7 +24,26 @@
           "iconHash": "2e44cfba9e410c76dc366af9e2d9f94c"
         }
       },
-      "build": {}
+      "build": {
+        "pwa": {
+          "iconHash": "45a244b4969e4b9c307a1c75b1139f0e"
+        },
+        "cordova": {
+          "iconHash": "45a244b4969e4b9c307a1c75b1139f0e",
+          "splashscreenHash": "4669a310ed5048a805064ee18a146110",
+          "splashscreenType": "pure",
+          "backgroundColor": "#ffffff"
+        }
+      }
     }
+  },
+  "auth-token-based": {
+    "register_route": "/account/registration",
+    "verification_route": false,
+    "login_route": "/account/login",
+    "password_forgot_route": false,
+    "password_reset_route": false,
+    "fetch_user_route": "/account/getprofile",
+    "superuser_functionality": true
   }
 }

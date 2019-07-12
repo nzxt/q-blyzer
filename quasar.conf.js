@@ -3,6 +3,8 @@
 
 module.exports = function (ctx) {
   return {
+    preFetch: true,
+
     // Quasar looks for *.js files by default
     sourceFiles: {
       router: 'src/router/index.ts',
@@ -11,7 +13,6 @@ module.exports = function (ctx) {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     boot: [
-      'api',
       'i18n'
     ],
 
@@ -57,7 +58,11 @@ module.exports = function (ctx) {
         'QBadge',
         'QFooter',
         'QTabs',
-        'QRouteTab'
+        'QRouteTab',
+        'QTable',
+        'QTh',
+        'QTr',
+        'QTd'
       ],
 
       directives: [

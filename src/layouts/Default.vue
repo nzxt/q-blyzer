@@ -25,25 +25,28 @@
 
     q-drawer( v-model='rightDrawerOpen' side='right' behavior='mobile' bordered content-class='bg-grey-0')
       q-list
+        auth-menu
+
+      q-list
         q-item-label(header) Navigation Links
 
         q-item(clickable exact to='/')
           q-item-section(avatar)
-            q-icon(name='mdi-school' size='36px')
+            q-icon(color='secondary' name='mdi-school' size='36px')
           q-item-section
-            q-item-label.text-subtitle1 Index Page
+            q-item-label.text-subtitle1 Dashboard
             q-item-label(caption) Go to Main Page
 
         q-item(clickable exact to='trainings')
           q-item-section(avatar)
-            q-icon(name='mdi-github-circle' size='36px')
+            q-icon(color='secondary' name='mdi-github-circle' size='36px')
           q-item-section
             q-item-label.text-subtitle1 All Trainings
             q-item-label(caption) Go to trainings list
 
         q-item(clickable  exact to='matches')
           q-item-section(avatar)
-            q-icon(name='mdi-chat' size='36px')
+            q-icon(color='secondary' name='mdi-chat' size='36px')
           q-item-section
             q-item-label.text-subtitle1 All Matches
             q-item-label(caption) Go to mathes list
@@ -59,6 +62,9 @@ import Vue from 'vue'
 
 export default Vue.extend({
   name: 'MyLayout',
+  components: {
+    AuthMenu: () => import('./auth/AuthMenu.vue')
+  },
   data () {
     return {
       rightDrawerOpen: this.$q.platform.is.desktop

@@ -17,6 +17,8 @@ export function SET_COMPONENT (state: State, value: string) { state.component = 
 
 export function SET_PLAYER (state: State, value: IPlayer) { state.player = value }
 
+export function SET_LIST (state: State, value: ITraining[]) { state.list = value }
+
 export function SET_TRAINING (state: State, value: ITraining) { state.training = value }
 
 export function ADD_BALL (state: State, value: IBall) { state.balls.push(value) }

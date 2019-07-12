@@ -4,8 +4,20 @@ const routes: RouteConfig[] = [
     path: '/',
     component: () => import('../layouts/Default.vue'),
     children: [
-      { path: '', component: () => import('../pages/Index.vue') },
-      { path: 'trainings', component: () => import('../pages/Trainings.vue') }
+      {
+        path: '',
+        component: () => import('../pages/Index.vue')
+      },
+      {
+        path: 'trainings',
+        meta: { auth: true },
+        component: () => import('../pages/Trainings.vue')
+      },
+      {
+        path: 'matches',
+        meta: { auth: true },
+        component: () => import('../pages/Matches.vue')
+      }
     ]
   }
 ]
