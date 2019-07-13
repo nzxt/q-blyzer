@@ -24,7 +24,9 @@
     "vue-i18n": "^8.12.0",
     "vue-property-decorator": "^8.2.1",
     "vuelidate": "^0.7.4",
-    "vuex-class": "^0.3.2"
+    "vuex-class": "^0.3.2",
+    "vue-flag-icon": "^1.0.6",
+    "vue-timers": "2.0.2"
   },
   "devDependencies": {
     "@kazupon/vue-i18n-loader": "^0.3.0",

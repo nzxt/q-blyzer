@@ -54,7 +54,11 @@ module.exports = function (ctx) {
         'QItemSection',
         'QItemLabel',
 
+        'QSpace',
         'QSeparator',
+        'QPagination',
+        'QSelect',
+        'QCheckbox',
         'QBadge',
         'QFooter',
         'QTabs',
@@ -62,7 +66,8 @@ module.exports = function (ctx) {
         'QTable',
         'QTh',
         'QTr',
-        'QTd'
+        'QTd',
+        'QSlideTransition'
       ],
 
       directives: [
