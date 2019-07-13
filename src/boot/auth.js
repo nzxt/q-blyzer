@@ -6,7 +6,7 @@ import enUS from '../i18n/en-us/auth'
 import ruRU from '../i18n/ru-ru/auth'
 import ukUK from '../i18n/uk-uk/auth'
 
-import { jsonapiModule } from 'jsonapi-vuex'
+// import { jsonapiModule } from 'jsonapi-vuex'
 
 function isArrayOrString (variable) {
   if (typeof variable === typeof [] || typeof variable === typeof '') {
@@ -40,7 +40,7 @@ export default ({ app, router, store, Vue }) => {
    */
   store.registerModule('auth', auth)
 
-  store.registerModule('jv', jsonapiModule(axiosInstance, { preserveJson: true }))
+  // store.registerModule('jv', jsonapiModule(axiosInstance, { preserveJson: true }))
 
   /**
    * Set route guard
@@ -121,19 +121,19 @@ export default ({ app, router, store, Vue }) => {
     }
   ]
 
-  routeData.children.push({
-    path: '/superuser',
-    meta: { auth: ['superuser'] },
-    name: 'superuser',
-    component: { render: h => h('router-view') },
-    children: [
-      {
-        path: 'users',
-        name: 'superuserUsers',
-        component: () => import('pages/auth/Users')
-      }
-    ]
-  })
+  // routeData.children.push({
+  //   path: '/superuser',
+  //   meta: { auth: ['superuser'] },
+  //   name: 'superuser',
+  //   component: { render: h => h('router-view') },
+  //   children: [
+  //     {
+  //       path: 'users',
+  //       name: 'superuserUsers',
+  //       component: () => import('pages/auth/Users')
+  //     }
+  //   ]
+  // })
 
   router.addRoutes([routeData])
 

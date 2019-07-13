@@ -91,7 +91,7 @@
 
     <!-- <br> -->
 
-    <q-list
+    <!-- <q-list
       v-if="this.$auth.check('Administrator')"
       no-border
       link
@@ -111,7 +111,7 @@
           <q-item-label>{{ $t('auth.superuser.users.users') }}</q-item-label>
         </q-item-section>
       </q-item>
-    </q-list>
+    </q-list> -->
 
     <br>
 
