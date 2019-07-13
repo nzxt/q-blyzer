@@ -1,5 +1,13 @@
 export interface IRootState {}
 
+export interface IPagination {
+  sortBy: string,
+  descending: Boolean,
+  page: number,
+  rowsPerPage: number,
+  rowsNumber: number
+}
+
 export interface IObj {
   id?: number;
   value: string | number;

@@ -10,7 +10,7 @@ export async function fetchList ({ state, commit }) {
     order: `${sortBy} ${descending ? 'DESC' : 'ASC'}`
   }
 
-  await api.ApiTrainingGet({...pagination})
+  await api.ApiMatchGet({...pagination})
     .then(({ data }) => {
       commit('SET_LIST', data.items)
       commit('SET_ROWS_NUMBER', data.itemCount)
@@ -23,7 +23,7 @@ export async function setPagination ({commit, dispatch}, value) {
 }
 
 export function deleteById ({ commit }, id: string) {
-  return api.ApiTrainingByIdDelete({ id })
+  return api.ApiMatchByIdDelete({ id })
     .then(({ data }) => {
       commit('DELETE_BY_ID', data)
     })

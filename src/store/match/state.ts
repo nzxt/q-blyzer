@@ -1,19 +1,17 @@
 import { IBall } from  '../../models/ball'
 import { IPlayer } from  '../../models/player'
-import { ITraining } from  '../../models/training'
+import { IMatch } from  '../../models/match'
 import { IPagination } from  '../../models/_interfaces'
 
 export interface State {
   component: string,
 
-  list: ITraining[],
+  list: IMatch[],
   pagination: IPagination,
 
-  training: ITraining | null,
   player: IPlayer | null,
+  match: IMatch | null,
   balls: IBall[],
-  shotType: number | null,
-  shotDistance: number | null
 }
 
 export const state = (): State => ({
@@ -28,9 +26,7 @@ export const state = (): State => ({
     rowsNumber: 0
   },
 
-  training: null,
   player: null,
-  balls: [],
-  shotType: null,
-  shotDistance: null
+  match: null,
+  balls: []
 })

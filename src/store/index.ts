@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import match from './match'
 import training from './training'
 
 Vue.use(Vuex)
@@ -14,6 +15,7 @@ export default function (/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
     // profile,
+      match,
       training
     // dictionaries
     },

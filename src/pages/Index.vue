@@ -18,9 +18,9 @@
     q-footer.bg-white.text-primary(bordered)
       q-tabs.text-brand(no-caps align='justify' indicator-color='transparent')
         q-route-tab(name='matches' icon='mdi-trophy' label='Your Matches' exact to='matches')
-          q-badge(color='red' floating) 27
+          q-badge(color='red' floating) {{ matchesPagination.rowsNumber }}
         q-route-tab(name='trainings' icon='mdi-triforce' label='Your Trainings' exact to='trainings')
-          q-badge(color='red' floating) 43
+          q-badge(color='red' floating) {{ trainingsPagination.rowsNumber }}
 </template>
 
 <style>
@@ -29,9 +29,16 @@
 <script lang="ts">
 import { TimelineLite } from 'gsap'
 import { Component, Vue } from 'vue-property-decorator'
+import { namespace } from 'vuex-class'
+
+const Match = namespace('match')
+const Training = namespace('training')
 
 @Component({})
 export default class ResultsPage extends Vue {
+  @Match.State('pagination') matchesPagination
+  @Training.State('pagination') trainingsPagination
+
   tl: any = null
 
   mounted () {

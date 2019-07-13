@@ -137,9 +137,14 @@ export default ({ app, router, store, Vue }) => {
 
   router.addRoutes([routeData])
 
-  store.dispatch('auth/fetch').catch(() => {
-    store.dispatch('auth/logout')
-  })
+  store.dispatch('auth/fetch')
+    .then(() => {
+      store.dispatch('match/fetchList')
+      store.dispatch('training/fetchList')
+    })
+    .catch(() => {
+      store.dispatch('auth/logout')
+    })
 
   var helper = {}
   helper.register = (data) => { return store.dispatch('auth/register', data) }
