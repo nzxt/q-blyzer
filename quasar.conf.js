@@ -13,7 +13,9 @@ module.exports = function (ctx) {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     boot: [
-      'i18n'
+      'i18n',
+      'flags',
+      'timers'
     ],
 
     css: [
@@ -54,6 +56,9 @@ module.exports = function (ctx) {
         'QItemSection',
         'QItemLabel',
 
+        'QInput',
+        'QDate',
+        'QAvatar',
         'QSpace',
         'QSeparator',
         'QPagination',
@@ -67,11 +72,13 @@ module.exports = function (ctx) {
         'QTh',
         'QTr',
         'QTd',
-        'QSlideTransition'
+        'QSlideTransition',
+        'QPopupProxy'
       ],
 
       directives: [
-        'Ripple'
+        'Ripple',
+        'ClosePopup'
       ],
 
       // Quasar plugins
