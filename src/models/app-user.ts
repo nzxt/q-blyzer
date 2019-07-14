@@ -5,10 +5,17 @@ export interface IAppUser {
   firstName?: string
   lastName?: string
   gender?: number
-  dateOfBirth?: Date
+  dateOfBirth?: string
   playerId?: string
   countryId?: string
   roleId?: string
+  passwordHash?: string
+  securityStamp?: string
+  concurrencyStamp?: string
+  emailConfirmed?: Boolean
+  phoneNumberConfirmed?: Boolean
+  twoFactorEnabled?: Boolean
+  lockoutEnabled?: Boolean
 }
 
 export class AppUser implements IAppUser {
@@ -25,8 +32,15 @@ export class AppUser implements IAppUser {
   firstName?: string
   lastName?: string
   gender?: number
-  dateOfBirth?: Date
+  dateOfBirth?: string
   playerId?: string
   countryId?: string
   roleId?: string
+  passwordHash?: string
+  securityStamp?: string
+  concurrencyStamp?: string
+  emailConfirmed?: Boolean
+  phoneNumberConfirmed?: Boolean
+  twoFactorEnabled?: Boolean
+  lockoutEnabled?: Boolean
 }

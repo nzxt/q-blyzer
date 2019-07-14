@@ -9,14 +9,16 @@ export async function fetch ({ dispatch }) {
   dispatch('fetchCountries')
 }
 
+// TODO: pick
 export async function fetchPlayers ({ commit }) {
   await api.ApiPlayerGet({ pageSize: 1000 })
-    .then(({ data }) => {
+  .then(({ data }) => {
       // const _data: IPlayer[] = pick(data, 'id', 'userName', 'firstName', 'lastName', 'gender', 'dateOfBirth', 'playerId', 'countryId', 'roleId')
       commit('SET_PLAYERS', data.items)
     })
-}
+  }
 
+// TODO: pick
 export async function fetchCountries ({ commit }) {
   await api.ApiCountryGet({ pageSize: 1000 })
     .then(({ data }) => {

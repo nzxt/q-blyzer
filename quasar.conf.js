@@ -56,8 +56,10 @@ module.exports = function (ctx) {
         'QItemSection',
         'QItemLabel',
 
+        'QDialog',
         'QInput',
         'QDate',
+        'QChip',
         'QAvatar',
         'QSpace',
         'QSeparator',

@@ -70,7 +70,6 @@ export function refresh (state) {
   if (tokens) {
     // axiosInstance.defaults.headers.common['Authorization'] = 'Bearer ' + token
     return axiosInstance.post(REFRESH_TOKEN_ROUTE, { ...tokens }).then((response) => {
-      debugger
       const token = response.data.accessToken
       axiosInstance.defaults.headers.common['Authorization'] = 'Bearer ' + token
       state.dispatch('setToken', { token: token, rememberMe: false, tokens: response.data })

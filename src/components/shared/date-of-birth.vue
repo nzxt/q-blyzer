@@ -3,6 +3,7 @@
     mask="date"
     :value="date"
     label="Date of Birth"
+    @input='$emit("change:dateOfBirth", $event)'
   )
     template(v-slot:append)
       q-icon.cursor-pointer(name='mdi-calendar')
@@ -13,17 +14,19 @@
         )
           q-date(
             minimal
+            mask="YYYY/MM/DD"
             :value="date"
-            @input='($evt) => { $emit("change::date", $evt); $refs.qDateProxy.hide() }'
+            @input='($evt) => { $emit("change:dateOfBirth", $event); $refs.qDateProxy.hide() }'
           )
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
+import { date } from 'quasar'
 
 @Component({})
-export default class FieldDateOfBirth extends Vue {
+export default class InputDateOfBirth extends Vue {
   @Prop({ default: null })
-  readonly date!: Date
+  readonly date!: string
 }
 </script>

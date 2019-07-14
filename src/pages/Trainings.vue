@@ -1,6 +1,7 @@
 <template lang="pug">
   q-page#trainings-list.flex.flex-center
     q-table.sticky-header-table.q-ma-sm(
+      :style='$q.screen.lt.sm ? "width: 100vw" : "min-width:360px"'
       title="Trainings"
       :dense="$q.screen.lt.md"
       :data="trainingsList"
@@ -56,9 +57,10 @@
           transition-show="jump-up"
           transition-hide="jump-up"
           borderless
-          v-model="pagination.rowsPerPage"
+          :value="pagination.rowsPerPage"
           :options="rowsPerPageOptions"
           style="width: 85px"
+          @input='onRowsPerPageChanged($event)'
         )
         q-space
         q-pagination(
@@ -125,7 +127,7 @@ export default class PageTrainings extends Vue {
       label: 'Avg Rating',
       field: row => row.avgBallRating,
       // format: val => `${val}%`,
-      sortable: true
+      sortable: false
     },
     {
       name: 'rate',
@@ -133,12 +135,16 @@ export default class PageTrainings extends Vue {
       label: 'Rate',
       field: row => row.rate,
       // format: val => `${val}%`,
-      sortable: true
+      sortable: false
     }
   ]
 
   onPageChanged (page: number) {
     this.pagination = { ...this.pagination, page }
+  }
+
+  onRowsPerPageChanged (rowsPerPage: number) {
+    this.pagination = { ...this.pagination, rowsPerPage }
   }
 
   get pagination (): IPagination {

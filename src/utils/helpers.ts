@@ -1,3 +1,8 @@
+
+export function isGuid (value) {
+  const guidRegex: RegExp = new RegExp(/^[{(]?[0-9a-f]{8}[-]?([0-9a-f]{4}[-]?){3}[0-9a-f]{12}[)}]?$/g)
+  return guidRegex.test(value)
+}
 // Picks only needed properties from object
 export function pick<T, K extends keyof T> (obj: T, ...keys: K[]): Pick<T, K> {
   const copy = {} as Pick<T, K>

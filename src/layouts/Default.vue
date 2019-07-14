@@ -10,12 +10,12 @@
 
           span.q-ml-sm.text-caption v{{ $q.version }}
 
-        q-btn(flat dense round aria-label='Chart' size='lg')
+        q-btn(flat dense round aria-label='Chart' size='lg' exact to='/')
           q-icon(name='mdi-chart-arc')
 
         q-separator.q-mx-sm(vertical)
 
-        q-btn(flat dense round aria-label='Add New' size='lg')
+        q-btn(flat dense round aria-label='Add New' size='lg' @click='dialogCreateNew = !dialogCreateNew')
           q-icon(name='mdi-plus')
 
         q-separator.q-mx-sm(vertical)
@@ -53,28 +53,21 @@
 
     q-page-container
       router-view
+
+    create-new(:dialog='dialogCreateNew' @before-hide='dialogCreateNew = false')
 </template>
 
 <script lang="ts">
-import { openURL } from 'quasar'
+import { Component, Vue } from 'vue-property-decorator'
 
-import Vue from 'vue'
-
-export default Vue.extend({
-  name: 'MyLayout',
+@Component({
   components: {
-    AuthMenu: () => import('./auth/AuthMenu.vue')
-  },
-  data () {
-    return {
-      rightDrawerOpen: this.$q.platform.is.desktop
-    }
-  },
-  methods: {
-    openURL
+    AuthMenu: () => import('./auth/AuthMenu.vue'),
+    CreateNew: () => import('src/components/dialogs/CreateNew.vue')
   }
 })
+export default class LayoutDefault extends Vue {
+  rightDrawerOpen: Boolean = this.$q.platform.is.desktop
+  dialogCreateNew: Boolean = false
+}
 </script>
-
-<style>
-</style>
