@@ -24,6 +24,9 @@
         <q-item-section>
           <q-item-label>{{ $t('auth.my_account') }}</q-item-label>
         </q-item-section>
+        <q-item-section avatar>
+          <q-icon name="mdi-sync" @click='$auth.refresh()'/>
+        </q-item-section>
       </q-item>
       <q-item
         class="text-secondary"

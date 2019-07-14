@@ -1,5 +1,5 @@
 <template lang="pug">
-  q-page#trainings-list.flex.justify-center
+  q-page#trainings-list.flex.flex-center
     q-table.sticky-header-table.q-ma-sm(
       title="Trainings"
       :dense="$q.screen.lt.md"

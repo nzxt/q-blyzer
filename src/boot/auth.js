@@ -139,6 +139,8 @@ export default ({ app, router, store, Vue }) => {
 
   store.dispatch('auth/fetch')
     .then(() => {
+      store.dispatch('account/fetch')
+      store.dispatch('dictionaries/fetch')
       store.dispatch('match/fetchList')
       store.dispatch('training/fetchList')
     })
@@ -153,6 +155,7 @@ export default ({ app, router, store, Vue }) => {
   helper.login = async (data) => { return store.dispatch('auth/login', data) }
   helper.setToken = (token) => { return store.dispatch('auth/setToken', token) }
   helper.logout = () => { return store.dispatch('auth/logout') }
+  helper.refresh = () => { return store.dispatch('auth/refresh') }
   helper.verify = (token) => { return store.dispatch('auth/verify', token) }
   helper.passwordForgot = (data) => { return store.dispatch('auth/passwordForgot', data) }
   helper.passwordReset = (data) => { return store.dispatch('auth/passwordReset', data) }
