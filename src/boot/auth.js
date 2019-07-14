@@ -139,6 +139,8 @@ export default ({ app, router, store, Vue }) => {
 
   store.dispatch('auth/fetch')
     .then(() => {
+      store.dispatch('account/fetch')
+      store.dispatch('dictionaries/fetch')
       store.dispatch('match/fetchList')
       store.dispatch('training/fetchList')
     })

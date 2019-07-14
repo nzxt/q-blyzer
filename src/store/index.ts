@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import account from './account'
 import match from './match'
 import training from './training'
+import dictionaries from './dictionaries'
 
 Vue.use(Vuex)
 
@@ -14,10 +16,10 @@ Vue.use(Vuex)
 export default function (/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
-    // profile,
+      account,
       match,
-      training
-    // dictionaries
+      training,
+      dictionaries
     },
 
     // enable strict mode (adds overhead!)
