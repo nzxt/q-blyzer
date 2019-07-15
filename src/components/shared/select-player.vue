@@ -14,7 +14,11 @@
   )
     //- :use-input='!player'
     template(v-slot:option='scope')
-      q-item.q-py-none.q-px-md(dense :class='scope.focused ? "bg-grey-4" : ""')
+      q-item.q-py-none.q-px-md(
+        dense
+        v-bind='scope.itemProps'
+        v-on='scope.itemEvents'
+      )
         q-item-section
           span.text-body2 {{ scope.opt.fullName }}
         q-item-section(avatar)

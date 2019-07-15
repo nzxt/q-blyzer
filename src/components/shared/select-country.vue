@@ -13,7 +13,12 @@
     @input='$emit("change:country", $event)'
   )
     template(v-slot:option='scope')
-      q-item.q-py-none.q-px-md(dense :class='scope.focused ? "bg-grey-4" : ""')
+      q-item.q-py-none.q-px-md(
+        dense
+        :class='scope.focused ? "bg-grey-4" : ""'
+        v-bind='scope.itemProps'
+        v-on='scope.itemEvents'
+      )
         q-item-section(avatar)
           span.text-body2 {{ scope.opt.alpha3 }}
         q-item-section

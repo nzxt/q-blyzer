@@ -45,6 +45,7 @@ export default ({ app, router, store, Vue }) => {
   /**
    * Set route guard
    */
+  // TODO: Check return's
   router.beforeEach((to, from, next) => {
     const record = to.matched.find(record => record.meta.auth)
     if (record) {
@@ -68,57 +69,57 @@ export default ({ app, router, store, Vue }) => {
       name: 'login',
       component: () => import('pages/auth/Login')
     },
-    {
-      path: '/logout',
-      name: 'logout',
-      component: () => import('pages/auth/Logout')
-    },
+    // {
+    //   path: '/logout',
+    //   name: 'logout',
+    //   component: () => import('pages/auth/Logout')
+    // },
     {
       path: '/register',
       name: 'register',
       component: () => import('pages/auth/Register')
     },
-    {
-      path: '/verification',
-      name: 'verification',
-      component: () => import('pages/auth/Verification')
-    },
-    {
-      path: '/password',
-      name: 'password',
-      component: { render: h => h('router-view') },
-      children: [
-        {
-          path: 'forgot',
-          name: 'forgot',
-          component: () => import('pages/auth/password/Forgot')
-        },
-        {
-          path: 'reset',
-          name: 'reset',
-          component: () => import('pages/auth/password/Reset')
-        }
-      ]
-    },
+    // {
+    //   path: '/verification',
+    //   name: 'verification',
+    //   component: () => import('pages/auth/Verification')
+    // },
+    // {
+    //   path: '/password',
+    //   name: 'password',
+    //   component: { render: h => h('router-view') },
+    //   children: [
+    //     {
+    //       path: 'forgot',
+    //       name: 'forgot',
+    //       component: () => import('pages/auth/password/Forgot')
+    //     },
+    //     {
+    //       path: 'reset',
+    //       name: 'reset',
+    //       component: () => import('pages/auth/password/Reset')
+    //     }
+    //   ]
+    // },
     {
       path: '/account',
       meta: { auth: true },
       name: 'account',
       component: () => import('pages/auth/Account')
-    },
-    {
-      path: '/admin',
-      meta: { auth: ['administrator'] },
-      name: 'admin',
-      component: { render: h => h('router-view') },
-      children: [
-        {
-          path: 'home',
-          name: 'adminHome',
-          component: () => import('pages/auth/Admin')
-        }
-      ]
     }
+    // {
+    //   path: '/admin',
+    //   meta: { auth: ['administrator'] },
+    //   name: 'admin',
+    //   component: { render: h => h('router-view') },
+    //   children: [
+    //     {
+    //       path: 'home',
+    //       name: 'adminHome',
+    //       component: () => import('pages/auth/Admin')
+    //     }
+    //   ]
+    // }
   ]
 
   // routeData.children.push({
@@ -137,13 +138,27 @@ export default ({ app, router, store, Vue }) => {
 
   router.addRoutes([routeData])
 
+  /* Only _actual_ login/outs (including resets) will be watched here. */
+  store.watch((state, getters) => getters['auth/loggedIn'], (isLoggedIn) => {
+    /* Follow @nuxtjs/auth workflow */
+    if (isLoggedIn) {
+      initStore()
+      // router.push('/')
+    } else {
+      // router.push('/')
+    }
+  })
+
+  function initStore () {
+    store.dispatch('account/fetch')
+    store.dispatch('dictionaries/fetch')
+    store.dispatch('match/fetchList')
+    store.dispatch('training/fetchList')
+  }
+
   store.dispatch('auth/fetch')
     .then(() => {
       // if (!store.getters('auth/loggedIn')) return
-      store.dispatch('account/fetch')
-      store.dispatch('dictionaries/fetch')
-      store.dispatch('match/fetchList')
-      store.dispatch('training/fetchList')
     })
     .catch(() => {
       store.dispatch('auth/logout')
@@ -157,9 +172,9 @@ export default ({ app, router, store, Vue }) => {
   helper.setToken = (token) => { return store.dispatch('auth/setToken', token) }
   helper.logout = () => { return store.dispatch('auth/logout') }
   helper.refresh = () => { return store.dispatch('auth/refresh') }
-  helper.verify = (token) => { return store.dispatch('auth/verify', token) }
-  helper.passwordForgot = (data) => { return store.dispatch('auth/passwordForgot', data) }
-  helper.passwordReset = (data) => { return store.dispatch('auth/passwordReset', data) }
+  // helper.verify = (token) => { return store.dispatch('auth/verify', token) }
+  // helper.passwordForgot = (data) => { return store.dispatch('auth/passwordForgot', data) }
+  // helper.passwordReset = (data) => { return store.dispatch('auth/passwordReset', data) }
   helper.fetch = () => { return store.dispatch('auth/fetch') }
   helper.user = () => { return store.getters['auth/user'] }
   Vue.prototype.$auth = helper

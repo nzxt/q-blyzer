@@ -16,7 +16,7 @@
             minimal
             mask="YYYY/MM/DD"
             :value="date"
-            @input='($evt) => { $emit("change:dateOfBirth", $event); $refs.qDateProxy.hide() }'
+            @input='$emit("change:dateOfBirth", $event); $refs.qDateProxy.hide()'
           )
 </template>
 
