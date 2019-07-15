@@ -1,6 +1,6 @@
 import { State } from './state'
 import { IBall } from '../../models/ball'
-import { IPlayer } from '../../models/player'
+// import { IPlayer } from '../../models/player'
 import { ITraining } from '../../models/training'
 import { IPagination } from 'src/models/_interfaces';
 
@@ -16,7 +16,7 @@ import { IPagination } from 'src/models/_interfaces';
 
 export function SET_COMPONENT (state: State, value: string) { state.component = value }
 
-export function SET_PLAYER (state: State, value: IPlayer) { state.player = value }
+export function SET_PLAYER_ID (state: State, value: string | null) { state.playerId = value }
 
 export function SET_TRAINING (state: State, value: ITraining) { state.training = value }
 
@@ -27,9 +27,9 @@ export function SET_SHOT_TYPE (state: State, value: number) { state.shotType = v
 export function SET_SHOT_DISTANCE (state: State, value: number) { state.shotDistance = value }
 
 export function CLEAR_STATE (state: State) {
-  state.component = 'Initial'
-  state.player = null
+  state.component = 'Results'
   state.training = null
+  state.playerId = null
   state.balls = []
   state.shotType = null
   state.shotDistance = null

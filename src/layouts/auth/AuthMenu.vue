@@ -75,13 +75,12 @@
     //-     </q-item-section>
     //-   </q-item>
     //- </q-list>
-
-    //- <br>
 </template>
 
-<script>
-export default {
-  name: 'AuthMenu',
+<script lang='ts'>
+import { Component, Vue } from 'vue-property-decorator'
+
+@Component({
   timers: {
     refreshTokens: {
       time: 300000,
@@ -89,11 +88,11 @@ export default {
       repeat: true,
       immediate: true
     }
-  },
-  methods: {
-    refreshTokens () {
-      this.$auth.refresh()
-    }
+  }
+})
+export default class AuthMenu extends Vue {
+  refreshTokens () {
+    this.$auth.refresh()
   }
 }
 </script>

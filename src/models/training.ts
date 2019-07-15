@@ -16,7 +16,6 @@ export class Training implements ITraining {
   ) {
     this.dateTimeStamp = dateTimeStamp
     this.appUserId = appUserId
-    // this.balls = []
   }
   id?: string;
   dateTimeStamp: Date;

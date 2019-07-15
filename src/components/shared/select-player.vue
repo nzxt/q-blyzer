@@ -25,10 +25,10 @@
           q-avatar(size='24px')
             flag(:iso='countryById(scope.opt.countryId).alpha2', style='font-size:24px;border-radius:50%')
 
-    //- template(v-slot:selected-item='scope')
-    //-   q-avatar(size='24px')
-    //-     flag(:iso='countryById(player.countryId).alpha2', style='font-size:24px;border-radius:50%')
-    //-   span.q-ml-sm {{ scope.opt.fullName }}
+    template(v-slot:selected-item='scope')
+      q-avatar(size='18px')
+        flag(:iso='countryById(player.countryId).alpha2', style='font-size:18px;border-radius:50%')
+      span.q-ml-sm {{ scope.opt.fullName }}
 
     template(v-slot:append)
       q-icon(name='mdi-close' v-if='player' @click='$emit("change:player", null)')

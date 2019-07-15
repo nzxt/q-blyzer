@@ -57,10 +57,10 @@ export default class SelectCountry extends Vue {
   }
 
   filterFn (val, update, abort) {
-    if (val.length < 1) {
-      abort()
-      return
-    }
+    // if (val.length < 1) {
+    //   abort()
+    //   return
+    // }
     update(() => {
       const needle = val.toLowerCase()
       this.filter = needle

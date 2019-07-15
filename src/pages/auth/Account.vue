@@ -3,22 +3,22 @@
     q-card#profile-card.q-ma-sm(:style='$q.screen.lt.sm ? "width:100vw" : "min-width:360px"')
       q-card-section
         q-item
-          q-item-section.items-center(avatar)
-            q-avatar(size='48px')
-              flag(:iso='countryById(appUser.countryId).alpha2', style='font-size:48px;border-radius:50%')
-            | {{ countryById(appUser.countryId).name }}
-
           q-item-section
             q-item-label
               span.text-h6 {{ fullName }}
-            q-item-label(caption) aka {{ appUser.userName }}
+            q-item-label(caption) profile for {{ appUser.userName }}
+
+          q-item-section(avatar style='max-width:100px; text-align:-webkit-center')
+            q-avatar(size='48px')
+              flag(:iso='countryById(appUser.countryId).alpha2', style='font-size:48px;border-radius:50%')
+            .text-caption {{ countryById(appUser.countryId).name }}
 
       q-card-section
         q-input(v-model="appUser.firstName" label="First Name")
         q-input(v-model="appUser.lastName" label="Last Name")
         input-date-of-birth(:date.sync='appUser.dateOfBirth' @change:dateOfBirth='onChangeDateOfBirth')
-        select-country(:countryId='appUser.countryId' @change:country='onChangeCountry')
-        select-player(:playerId='appUser.playerId' @change:player='onChangePlayer')
+        select-country(:countryId.sync='appUser.countryId' @change:country='onChangeCountry')
+        select-player(:playerId.sync='appUser.playerId' @change:player='onChangePlayer')
 
       q-card-actions
         q-btn.full-width(color='primary' @click='onSave' :loading='loading') Save

@@ -1,5 +1,5 @@
 import { IBall } from  '../../models/ball'
-import { IPlayer } from  '../../models/player'
+// import { IPlayer } from  '../../models/player'
 import { ITraining } from  '../../models/training'
 import { IPagination } from  '../../models/_interfaces'
 
@@ -10,14 +10,14 @@ export interface State {
   pagination: IPagination,
 
   training: ITraining | null,
-  player: IPlayer | null,
+  playerId: string | null,
   balls: IBall[],
   shotType: number | null,
   shotDistance: number | null
 }
 
 export const state = (): State => ({
-  component: 'Initial',
+  component: 'Results',
 
   list: [],
   pagination: {
@@ -29,7 +29,7 @@ export const state = (): State => ({
   },
 
   training: null,
-  player: null,
+  playerId: null,
   balls: [],
   shotType: null,
   shotDistance: null

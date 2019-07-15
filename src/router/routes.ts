@@ -2,22 +2,32 @@ import { RouteConfig } from 'vue-router'
 const routes: RouteConfig[] = [
   {
     path: '/',
-    component: () => import('../layouts/Default.vue'),
+    component: () => import('src/layouts/Default.vue'),
     children: [
       {
         path: '',
-        component: () => import('../pages/Index.vue')
+        component: () => import('src/pages/Index.vue')
       },
       {
         path: 'trainings',
         meta: { auth: true },
-        component: () => import('../pages/Trainings.vue')
+        component: () => import('src/pages/Trainings.vue')
       },
       {
         path: 'matches',
         meta: { auth: true },
-        component: () => import('../pages/Matches.vue')
+        component: () => import('src/pages/Matches.vue')
+      },
+      {
+        path: 'training',
+        meta: { auth: true },
+        component: () => import('src/pages/Training.vue')
       }
+      // {
+      //   path: 'match',
+      //   meta: { auth: true },
+      //   component: () => import('src/pages/Match.vue')
+      // }
     ]
   }
 ]
@@ -26,7 +36,7 @@ const routes: RouteConfig[] = [
 if (process.env.MODE !== 'ssr') {
   routes.push({
     path: '*',
-    component: () => import('../pages/Error404.vue')
+    component: () => import('src/pages/Error404.vue')
   })
 }
 

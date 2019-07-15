@@ -69,11 +69,11 @@ export default ({ app, router, store, Vue }) => {
       name: 'login',
       component: () => import('pages/auth/Login')
     },
-    // {
-    //   path: '/logout',
-    //   name: 'logout',
-    //   component: () => import('pages/auth/Logout')
-    // },
+    {
+      path: '/logout',
+      name: 'logout',
+      component: () => import('pages/auth/Logout')
+    },
     {
       path: '/register',
       name: 'register',
@@ -156,18 +156,20 @@ export default ({ app, router, store, Vue }) => {
     store.dispatch('training/fetchList')
   }
 
+  function cleanStore () {
+    // store.commit('training/CLEAR_STATE')
+  }
+
   store.dispatch('auth/fetch')
-    .then(() => {
-      // if (!store.getters('auth/loggedIn')) return
-    })
+    // .then(() => {
+    //   if (!store.getters('auth/loggedIn')) return
+    // })
     .catch(() => {
       store.dispatch('auth/logout')
     })
 
   var helper = {}
   helper.register = (data) => { return store.dispatch('auth/register', data) }
-  helper.loggedIn = () => { return store.getters['auth/loggedIn'] }
-  helper.check = (roles) => { return store.getters['auth/check'](roles) }
   helper.login = async (data) => { return store.dispatch('auth/login', data) }
   helper.setToken = (token) => { return store.dispatch('auth/setToken', token) }
   helper.logout = () => { return store.dispatch('auth/logout') }
@@ -176,6 +178,8 @@ export default ({ app, router, store, Vue }) => {
   // helper.passwordForgot = (data) => { return store.dispatch('auth/passwordForgot', data) }
   // helper.passwordReset = (data) => { return store.dispatch('auth/passwordReset', data) }
   helper.fetch = () => { return store.dispatch('auth/fetch') }
+  helper.loggedIn = () => { return store.getters['auth/loggedIn'] }
+  helper.check = (roles) => { return store.getters['auth/check'](roles) }
   helper.user = () => { return store.getters['auth/user'] }
   Vue.prototype.$auth = helper
 }
