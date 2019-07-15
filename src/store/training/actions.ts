@@ -10,20 +10,19 @@ export async function fetchList ({ state, commit }) {
     // filter: '',
     order: `${sortBy} ${descending ? 'DESC' : 'ASC'}`
   }
-
-  await api.ApiTrainingGet({...pagination})
+  await api.ApiTrainingGet({ ...pagination })
     .then(({ data }) => {
       commit('SET_LIST', data.items)
       commit('SET_ROWS_NUMBER', data.itemCount)
     })
 }
 
-export async function setPagination ({commit, dispatch}, value) {
+export async function setPagination ({ commit, dispatch }, value) {
   commit('SET_PAGINATION', value)
   await dispatch('fetchList')
 }
 
-export async function createTraining ({dispatch}, item) {
+export async function createTraining ({ dispatch }, item) {
   await api.ApiTrainingPost({ item })
     .then(({ data }) => {
       dispatch('fetchById', data)

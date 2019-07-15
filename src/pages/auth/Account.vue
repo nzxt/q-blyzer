@@ -11,12 +11,12 @@
           q-item-section(avatar style='max-width:100px; text-align:-webkit-center')
             q-avatar(size='48px')
               flag(:iso='countryById(appUser.countryId).alpha2', style='font-size:48px;border-radius:50%')
-            .text-caption {{ countryById(appUser.countryId).name }}
+            //- .text-caption {{ countryById(appUser.countryId).name }}
 
       q-card-section
         q-input(v-model="appUser.firstName" label="First Name")
         q-input(v-model="appUser.lastName" label="Last Name")
-        input-date-of-birth(:date.sync='appUser.dateOfBirth' @change:dateOfBirth='onChangeDateOfBirth')
+        pick-date(label='Date of Birth' :date.sync='appUser.dateOfBirth' @change:date='onChangeDateOfBirth')
         select-country(:countryId.sync='appUser.countryId' @change:country='onChangeCountry')
         select-player(:playerId.sync='appUser.playerId' @change:player='onChangePlayer')
 
@@ -36,7 +36,7 @@ const Account = namespace('account')
 
 @Component({
   components: {
-    InputDateOfBirth: () => import('src/components/shared/date-of-birth.vue'),
+    PickDate: () => import('src/components/shared/pick-date.vue'),
     SelectCountry: () => import('src/components/shared/select-country.vue'),
     SelectPlayer: () => import('src/components/shared/select-player.vue')
   },

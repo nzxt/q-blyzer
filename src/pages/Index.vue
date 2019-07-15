@@ -17,10 +17,10 @@
 
     q-footer.bg-white.text-primary(bordered)
       q-tabs.text-brand(no-caps align='justify' indicator-color='transparent')
-        q-route-tab(name='matches' icon='mdi-trophy' label='Your Matches' exact to='matches')
-          q-badge(color='red' floating) {{ matchesPagination.rowsNumber }}
+        q-route-tab(name='matches' icon='mdi-trophy' label='Your Matches' exact to='matches' disabled)
+          q-badge(v-if='matchesPagination.rowsNumber' color='red' floating) {{ matchesPagination.rowsNumber }}
         q-route-tab(name='trainings' icon='mdi-triforce' label='Your Trainings' exact to='trainings')
-          q-badge(color='red' floating) {{ trainingsPagination.rowsNumber }}
+          q-badge(v-if='trainingsPagination.rowsNumber' color='red' floating) {{ trainingsPagination.rowsNumber }}
 </template>
 
 <style>

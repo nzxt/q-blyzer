@@ -15,15 +15,15 @@
 
         q-separator.q-mx-sm(vertical)
 
-        q-btn(flat dense round aria-label='Add New' size='lg' @click='dialogCreateNew = !dialogCreateNew')
+        q-btn(flat dense round aria-label='Add New' size='lg' @click.stop.prevent='dialogCreateNew = !dialogCreateNew')
           q-icon(name='mdi-plus')
 
         q-separator.q-mx-sm(vertical)
 
-        q-btn(flat dense round @click='rightDrawerOpen = !rightDrawerOpen' aria-label='Menu' size='lg')
+        q-btn(flat dense round @click.stop.prevent='rightDrawerOpen = !rightDrawerOpen' aria-label='Menu' size='lg')
           q-icon(name='mdi-menu-open')
 
-    q-drawer( v-model='rightDrawerOpen' side='right' behavior='mobile' bordered content-class='bg-grey-0')
+    q-drawer(v-model='rightDrawerOpen' side='right' behavior='mobile' overlay bordered content-class='bg-grey-0')
       q-list
         auth-menu
 
@@ -32,24 +32,24 @@
 
         q-item(clickable exact to='/')
           q-item-section(avatar)
-            q-icon(color='secondary' name='mdi-school' size='36px')
+            q-icon(color='secondary' name='mdi-chart-arc' size='36px')
           q-item-section
             q-item-label.text-subtitle1 Dashboard
             q-item-label(caption) Go to Main Page
 
-        q-item(clickable exact to='trainings')
+        q-item(clickable exact to='matches' disabled)
           q-item-section(avatar)
-            q-icon(color='secondary' name='mdi-github-circle' size='36px')
-          q-item-section
-            q-item-label.text-subtitle1 All Trainings
-            q-item-label(caption) Go to trainings list
-
-        q-item(clickable  exact to='matches')
-          q-item-section(avatar)
-            q-icon(color='secondary' name='mdi-chat' size='36px')
+            q-icon(color='secondary' name='mdi-trophy' size='36px')
           q-item-section
             q-item-label.text-subtitle1 All Matches
             q-item-label(caption) Go to mathes list
+
+        q-item(clickable exact to='trainings')
+          q-item-section(avatar)
+            q-icon(color='secondary' name='mdi-triforce' size='36px')
+          q-item-section
+            q-item-label.text-subtitle1 All Trainings
+            q-item-label(caption) Go to trainings list
 
     q-page-container
       router-view
@@ -67,7 +67,11 @@ import { Component, Vue } from 'vue-property-decorator'
   }
 })
 export default class LayoutDefault extends Vue {
-  rightDrawerOpen: Boolean = this.$q.platform.is.desktop
+  rightDrawerOpen: Boolean = false
   dialogCreateNew: Boolean = false
+
+  mounted () {
+    this.rightDrawerOpen = this.$q.platform.is.desktop
+  }
 }
 </script>

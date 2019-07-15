@@ -1,5 +1,8 @@
 <template>
-  <q-page class="flex flex-center">
+  <q-page
+    padding
+    class="flex flex-center"
+  >
     <q-card
       square
       style="width: 400px; padding:50px"

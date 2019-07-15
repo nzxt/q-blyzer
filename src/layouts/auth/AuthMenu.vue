@@ -86,7 +86,7 @@ import { Component, Vue } from 'vue-property-decorator'
       time: 300000,
       autostart: true,
       repeat: true,
-      immediate: true
+      immediate: false
     }
   }
 })

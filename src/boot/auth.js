@@ -140,7 +140,6 @@ export default ({ app, router, store, Vue }) => {
 
   /* Only _actual_ login/outs (including resets) will be watched here. */
   store.watch((state, getters) => getters['auth/loggedIn'], (isLoggedIn) => {
-    /* Follow @nuxtjs/auth workflow */
     if (isLoggedIn) {
       initStore()
       // router.push('/')

@@ -8,13 +8,12 @@
     q-card(:style='$q.screen.lt.sm ? "width: 100vw" : "min-width: 360px"')
       q-card-section
         .text-h6 Create new..
-      q-card-section
-        q-btn.full-width(@click='$router.push("match")' disabled)
-          q-icon(left name='mdi-trophy')
+      q-card-section.row.q-gutter-md
+        q-btn.col(stack @click='$router.push("match")' disabled)
+          q-icon(name='mdi-trophy' size='36px')
           .text-subtitle1.q-pt-xs Match
-      q-card-section
-        q-btn.full-width(@click='$router.push("training")')
-          q-icon(left name='mdi-triforce')
+        q-btn.col(stack @click='$router.push("training")')
+          q-icon(name='mdi-triforce' size='36px')
           .text-subtitle1.q-pt-xs Training
 </template>
 

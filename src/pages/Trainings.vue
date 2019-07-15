@@ -1,6 +1,6 @@
 <template lang="pug">
-  q-page#trainings-list.flex.flex-center
-    q-table.sticky-header-table.q-ma-sm(
+  q-page#trainings-list.flex.flex-center(padding)
+    q-table.sticky-header-table(
       :style='$q.screen.lt.sm ? "width: 100vw" : "min-width:360px"'
       title="Trainings"
       :dense="$q.screen.lt.md"
@@ -11,9 +11,11 @@
       :selected.sync="selected"
       :loading="loading"
       :pagination.sync="pagination"
-      @request="onRequest"
       :rows-per-page-options="rowsPerPageOptions"
+      binary-state-sort
+      @request="onRequest"
     )
+      //- :sort-method="customSort"
       template(v-slot:top-right)
         q-btn(
           v-if='!selected.length'
@@ -21,6 +23,8 @@
           rounded
           color="deep-orange"
           :loading="loading"
+          exact
+          to='training'
         )
           q-icon(left name="mdi-plus-circle")
           | Add new
@@ -66,7 +70,7 @@
         q-pagination(
           :value="pagination.page"
           :max="Math.trunc(pagination.rowsNumber / pagination.rowsPerPage)"
-          :max-pages='$q.screen.lt.md ? 5 : 7'
+          :max-pages='$q.screen.lt.sm ? 5 : 7'
           :direction-links="true"
           @input='onPageChanged($event)'
         )
@@ -119,6 +123,7 @@ export default class PageTrainings extends Vue {
       label: 'Date/Time',
       field: row => row.dateTimeStamp,
       // format: val => formatDate(val, 'DD.MM.YYYY HH:mm'),
+      // sort: (a, b, rowA, rowB) => parseInt(a, 10) - parseInt(b, 10),
       sortable: true
     },
     {
@@ -135,7 +140,7 @@ export default class PageTrainings extends Vue {
       label: 'Rate',
       field: row => row.rate,
       // format: val => `${val}%`,
-      sortable: false
+      sortable: true
     }
   ]
 
