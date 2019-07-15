@@ -65,7 +65,7 @@
         q-space
         q-pagination(
           :value="pagination.page"
-          :max="pagination.rowsNumber / pagination.rowsPerPage"
+          :max="Math.trunc(pagination.rowsNumber / pagination.rowsPerPage)"
           :max-pages='$q.screen.lt.md ? 5 : 7'
           :direction-links="true"
           @input='onPageChanged($event)'
