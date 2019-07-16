@@ -49,6 +49,9 @@
           q-td(key='rate' :props='props') {{ props.row.rate }}
           q-td(key='avgBallRating' :props='props')
             q-badge(square color='secondary') {{ props.row.avgBallRating }}
+          q-td(key='action' :props='props')
+            q-btn(round size='sm' @click='onClickRow(props.row)')
+              q-icon(name='mdi-chevron-right' size='24px')
 
       //- template(v-slot:top-selection)
       //-   .text-h6 Trainings
@@ -96,8 +99,10 @@ const Training = namespace('training')
 export default class PageTrainings extends Vue {
   @Training.State('list') trainingsList
   @Training.State('pagination') trainingsPagination
-  @Training.Action('fetchList') trainingsFetchList
-  @Training.Action('setPagination') setPagination
+  @Training.Action('setTraining') setTraining
+  // @Training.Action('fetchById') fetchTrainingDetails
+  // @Training.Action('fetchList') fetchList
+  @Training.Action('setPagination') setTrainingPagination
   @Training.Action('deleteById') deleteTrainingById
 
   formatDate: Function = date.formatDate
@@ -141,6 +146,14 @@ export default class PageTrainings extends Vue {
       field: row => row.rate,
       // format: val => `${val}%`,
       sortable: false
+    },
+    {
+      name: 'action',
+      align: 'center',
+      label: 'Action',
+      // field: row => row.rate,
+      // format: val => `${val}%`,
+      sortable: false
     }
   ]
 
@@ -156,12 +169,17 @@ export default class PageTrainings extends Vue {
     return this.trainingsPagination
   }
   set pagination (value: IPagination) {
-    this.setPagination(value)
+    this.setTrainingPagination(value)
+  }
+
+  async onClickRow (value: any) {
+    await this.setTraining(value)
+    this.$router.push('training')
   }
 
   async onRequest (props) {
     this.loading = true
-    await this.setPagination(props.pagination)
+    await this.setTrainingPagination(props.pagination)
     this.loading = false
   }
 

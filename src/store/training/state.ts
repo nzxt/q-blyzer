@@ -10,6 +10,7 @@ export interface State {
   pagination: IPagination,
 
   training: ITraining | null,
+  details: Array<any> | null,
   playerId: string | null,
   balls: IBall[],
   shotType: number | null,
@@ -29,6 +30,7 @@ export const state = (): State => ({
   },
 
   training: null,
+  details: null,
   playerId: null,
   balls: [],
   shotType: null,

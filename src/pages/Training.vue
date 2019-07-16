@@ -1,28 +1,34 @@
 <template lang="pug">
-  q-page.flex.flex-center
-    component#component(:is="component")
+  q-page.flex.justify-center(padding)
+    q-card
+      q-card-section
+        Breadcrumbs(:items='breadcrumbs')
+      q-card-section.q-pa-none
+        component#component(:is="component")
     dialog-initialize-training(:dialog='dialogInitialize' @before-hide='dialogInitialize = false')
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { namespace } from 'vuex-class'
+import { date } from 'quasar'
 import { isPlainObject, isEmptyObject } from 'src/utils/helpers'
 
-const Training = namespace('training')
+const TrainingNS = namespace('training')
 
 @Component({
   components: {
-    DialogInitializeTraining: () => import('src/components/training/dialogs/InitializeTraining.vue')
-    // Results: () => import('src/components/training/Results.vue'),
+    DialogInitializeTraining: () => import('src/components/training/dialogs/InitializeTraining.vue'),
+    Breadcrumbs: () => import('src/components/shared/breadcrumbs.vue'),
+    Results: () => import('src/components/training/Results.vue')
     // Balls: () => import('src/components/training/Balls.vue')
   }
 })
 export default class TrainingPage extends Vue {
-  @Training.State('component') component
-  @Training.State('training') training
-  @Training.Mutation('SET_COMPONENT') setComponent
-  @Training.Mutation('CLEAR_STATE') clearState
+  @TrainingNS.State('component') component
+  @TrainingNS.State('training') training
+  @TrainingNS.Mutation('SET_COMPONENT') setComponent
+  @TrainingNS.Action('resetTraining') resetTraining
 
   dialogInitialize: Boolean = false
 
@@ -36,7 +42,20 @@ export default class TrainingPage extends Vue {
   }
 
   beforeDestroy () {
-    this.clearState()
+    this.resetTraining()
+  }
+
+  get breadcrumbs () {
+    const { training } = this
+    if (!training) return
+    return [{
+      label: 'Trainings',
+      icon: 'mdi-triforce',
+      to: 'trainings'
+    }, {
+      label: date.formatDate(training.dateTimeStamp, 'YYYY/MM/DD HH:mm')
+      // icon: 'mdi-triforce'
+    }]
   }
 }
 </script>
