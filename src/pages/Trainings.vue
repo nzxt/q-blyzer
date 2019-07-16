@@ -48,7 +48,7 @@
           q-td(key='dateTimeStamp' :props='props') {{ formatDate(props.row.dateTimeStamp, 'DD.MM.YYYY HH:mm') }}
           q-td(key='rate' :props='props') {{ props.row.rate }}
           q-td(key='avgBallRating' :props='props')
-            q-badge(square color='secondary') {{ props.row.avgBallRating }}%
+            q-badge(square color='secondary') {{ props.row.avgBallRating }}
 
       //- template(v-slot:top-selection)
       //-   .text-h6 Trainings
@@ -137,10 +137,10 @@ export default class PageTrainings extends Vue {
     {
       name: 'rate',
       align: 'center',
-      label: 'Rate',
+      label: 'Rate, %',
       field: row => row.rate,
       // format: val => `${val}%`,
-      sortable: true
+      sortable: false
     }
   ]
 
