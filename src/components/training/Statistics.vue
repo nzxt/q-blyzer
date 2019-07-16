@@ -21,7 +21,7 @@
           StatList(:data='data')
 
         q-tab-panel(name='chart')
-          //- StatPie(:data='data')
+          StatPie(:data='data')
 </template>
 
 <script lang="ts">
@@ -33,8 +33,8 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 
 @Component({
   components: {
-    StatList: () => import('./StatList.vue')
-    // StatPie: () => import('./StatPie.vue')
+    StatList: () => import('./StatList.vue'),
+    StatPie: () => import('./StatPie.vue')
     // StatBar: () => import('./StatBar.vue')
   }
   // mixins: [GlobalMixin]

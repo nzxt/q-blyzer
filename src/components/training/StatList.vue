@@ -9,7 +9,7 @@
       selection='multiple'
       :selected.sync='selected'
       :pagination.sync="pagination"
-      row-key="avgRating"
+      row-key="id"
     )
       //- binary-state-sort
       //- :selected-rows-label='(numberOfRows) => `${numberOfRows} selected`'
@@ -26,8 +26,8 @@
             q-linear-progress(
               rounded
               color="accent"
-              :value="props.row.avgRating * 0.02"
-              :style='width:70px'
+              :value="props.row.avgRating * 0.2"
+              style='width:80px'
             )
           q-td(key='count' :props='props')
             q-avatar(color='grey-3' size='24px') {{ props.row.count }}
@@ -71,7 +71,7 @@ export default class StatList extends Vue {
     {
       name: 'avgRating',
       label: 'Avg Rating',
-      align: 'left',
+      align: 'center',
       field: row => row.avgRating,
       // format: val => `${val.toFixed(1)}`,
       sortable: true

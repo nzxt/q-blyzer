@@ -3,10 +3,13 @@
     q-card-section
       apexchart(
         type='pie'
-        width='100%'
         :options="pieChartOptions"
         :series="pieSeries"
       )
+        //- width=300
+        //- width='100%'
+        //- height=300
+        //- height='100%'
 </template>
 
 <script lang="ts">
@@ -23,17 +26,22 @@ export default class StatPie extends Vue {
   readonly data!: Array<any>
 
   chartOptions: any = {
-    responsive: [{
-      breakpoint: 400,
-      options: {
-        chart: {
-          height: 312
-        },
-        legend: {
-          position: 'bottom'
-        }
-      }
-    }]
+    // responsive: [{
+    // breakpoint: 400,
+    // options: {
+    chart: {
+      width: '100%'
+      // height: 500
+    },
+    legend: {
+      show: false,
+      position: 'bottom',
+      floating: false
+      // height: 200
+      // offsetY: -150
+    }
+    // }
+    // }],
   }
 
   get pieChartOptions (): any {
@@ -55,3 +63,8 @@ export default class StatPie extends Vue {
   }
 }
 </script>
+
+<style lang="stylus">
+  .apexcharts-svg
+    height 600 !important
+</style>

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import qs from 'qs'
 
-import ApiService from '../services/api'
+import ApiService from 'src/services/api'
 
 const axiosInstance = axios.create({
   paramsSerializer: (params) => {

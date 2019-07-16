@@ -1,5 +1,6 @@
 import { Notify } from 'quasar'
 import { api } from 'src/boot/axios'
+import { getShotTypeName, getShotTypeAbbr, getShotDistanceName } from 'src/utils/enums-helper'
 
 export async function fetchList ({ state, commit }) {
   const { page, rowsPerPage, sortBy, descending } = state.pagination
@@ -41,6 +42,12 @@ export async function createTraining ({ dispatch }, item) {
 export async function fetchById ({ commit }, id: string) {
   await api.ApiTrainingByIdGet({ id })
     .then(({ data }) => {
+      data.map((x) => {
+        x.id = JSON.stringify(x)
+        x.shotTypeName = getShotTypeName(x.shotType)
+        x.shotTypeAbbr = getShotTypeAbbr(x.shotType)
+        x.shotDistanceName = getShotDistanceName(x.distance)
+      })
       commit('SET_DETAILS', data)
     })
 }
