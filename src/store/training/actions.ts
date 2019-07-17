@@ -62,7 +62,7 @@ export function deleteById ({ commit }, id: string) {
 export function resetTraining ({ commit }) {
   commit('SET_COMPONENT', 'Results')
   commit('SET_TRAINING', null)
-  commit('SET_DETAILS', null)
+  commit('SET_DETAILS', [])
   commit('SET_PLAYER_ID', null)
   commit('SET_BALLS', [])
   commit('SET_SHOT_TYPE', null)

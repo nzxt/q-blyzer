@@ -10,18 +10,17 @@
       q-tab(name="list" icon='mdi-format-list-numbered' label="List")
       q-tab(name="chart" icon='mdi-chart-donut-variant' label="Chart")
 
-    .q-gutter-y-sm
-      q-tab-panels.text-center(
-        v-model='tab'
-        animated
-        transition-prev='scale'
-        transition-next='scale'
-      )
-        q-tab-panel.q-pa-none(name='list')
-          StatList(:data='data')
+    q-tab-panels.text-center(
+      v-model='tab'
+      transition-prev='scale'
+      transition-next='scale'
+    )
+      //- animated
+      q-tab-panel.q-pa-none(name='list')
+        StatList(:data='data')
 
-        q-tab-panel(name='chart')
-          StatPie(:data='data')
+      q-tab-panel.q-pa-none(name='chart')
+        StatPie(:data='data')
 </template>
 
 <script lang="ts">

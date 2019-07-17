@@ -8,7 +8,7 @@
       q-card-section
         .text-h6 Create new training..
 
-      q-card-section.row.q-gutter-xl
+      q-card-section.row.q-gutter-md
         pick-date.col(label='Date' :date.sync='dateStamp' @change:date='dateStamp = $event')
         pick-time.col(label='Time' :time.sync='timeStamp' @change:time='timeStamp = $event')
 
@@ -25,7 +25,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Component, Prop, Watch, Vue } from 'vue-property-decorator'
 import { namespace } from 'vuex-class'
 import { date } from 'quasar'
 import { ITraining, Training } from 'src/models/training'
@@ -57,6 +57,11 @@ export default class DialogInitializeTraining extends Vue {
   timeStamp: Date = date.formatDate(new Date(), 'HH:mm')
 
   mounted () {
+    this.setPlayerId(this.appUser.playerId)
+  }
+
+  @Watch('dialog')
+  onOpenDialog (value: Boolean) {
     this.setPlayerId(this.appUser.playerId)
   }
 

@@ -9,6 +9,7 @@
       selection='multiple'
       :selected.sync='selected'
       :pagination.sync="pagination"
+      :rows-per-page-options="rowsPerPageOptions"
       row-key="id"
     )
       //- binary-state-sort
@@ -25,12 +26,34 @@
             | {{ props.row.avgRating.toFixed(1) }}
             q-linear-progress(
               rounded
-              color="accent"
+              color="positive"
               :value="props.row.avgRating * 0.2"
-              style='width:80px'
+              style='width:40px'
             )
           q-td(key='count' :props='props')
             q-avatar(color='grey-3' size='24px') {{ props.row.count }}
+
+      template(v-slot:bottom='props')
+        q-select(
+          dense
+          label="per page"
+          transition-show="jump-up"
+          transition-hide="jump-up"
+          borderless
+          :value="pagination.rowsPerPage"
+          :options="rowsPerPageOptions"
+          style="width: 85px"
+          @input='pagination.rowsPerPage = $event'
+        )
+        q-space
+        q-pagination(
+          size='sm'
+          :value="pagination.page"
+          :max="Math.trunc(pagination.rowsNumber / pagination.rowsPerPage)"
+          :max-pages='$q.screen.lt.sm ? 5 : 7'
+          :direction-links="true"
+          @input='pagination.page = $event'
+        )
 </template>
 
 <script lang="ts">
@@ -42,12 +65,13 @@ export default class StatList extends Vue {
   readonly data!: Array<any>
 
   selected: Array<any> = []
+  rowsPerPageOptions: number[] = [15, 25, 50]
 
   pagination: any = {
     sortBy: 'shotType',
     descending: false,
     page: 1,
-    rowsPerPage: 25,
+    rowsPerPage: 15,
     rowsNumber: this.data.length
   }
 
@@ -62,7 +86,7 @@ export default class StatList extends Vue {
     },
     {
       name: 'distance',
-      label: 'Distance',
+      label: 'Dist',
       align: 'left',
       field: row => row.distance,
       // format: val => `${val}m`,
@@ -70,7 +94,7 @@ export default class StatList extends Vue {
     },
     {
       name: 'avgRating',
-      label: 'Avg Rating',
+      label: 'Avg',
       align: 'center',
       field: row => row.avgRating,
       // format: val => `${val.toFixed(1)}`,
@@ -93,7 +117,7 @@ export default class StatList extends Vue {
     >>> .sticky-header-table
       /* max height is important */
       .q-table__middle
-        max-height calc(100vh - 280px)
+        max-height calc(100vh - 264px)
 
       .q-table__top,
       .q-table__bottom,

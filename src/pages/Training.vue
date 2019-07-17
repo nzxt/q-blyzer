@@ -9,10 +9,11 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Watch, Vue } from 'vue-property-decorator'
 import { namespace } from 'vuex-class'
 import { date } from 'quasar'
 import { isPlainObject, isEmptyObject } from 'src/utils/helpers'
+import { ITraining } from 'src/models/training'
 
 const TrainingNS = namespace('training')
 
@@ -34,9 +35,16 @@ export default class TrainingPage extends Vue {
 
   created () {
     this.setComponent('Results')
+    this.isNewTraining(this.training)
+  }
 
-    const { training } = this
-    if (!isPlainObject(training) || isEmptyObject(training)) {
+  @Watch('training')
+  onChangeTraining (value: ITraining | null) {
+    this.isNewTraining(value)
+  }
+
+  isNewTraining (value: any) {
+    if (!isPlainObject(value) || isEmptyObject(value)) {
       this.dialogInitialize = true
     }
   }

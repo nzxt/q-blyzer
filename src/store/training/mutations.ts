@@ -17,7 +17,7 @@ export function SET_COMPONENT (state: State, value: string) { state.component = 
 
 export function SET_PLAYER_ID (state: State, value: string | null) { state.playerId = value }
 
-export function SET_TRAINING (state: State, value: ITraining) { state.training = value }
+export function SET_TRAINING (state: State, value: ITraining | null) { state.training = value }
 
 export function SET_DETAILS (state: State, value: Array<any>) { state.details = value }
 

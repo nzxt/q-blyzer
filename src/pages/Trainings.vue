@@ -50,7 +50,7 @@
           q-td(key='avgBallRating' :props='props')
             q-badge(square color='secondary') {{ props.row.avgBallRating }}
           q-td(key='action' :props='props')
-            q-btn(round size='sm' @click='onClickRow(props.row)')
+            q-btn(round size='xs' @click='onClickRow(props.row)')
               q-icon(name='mdi-chevron-right' size='24px')
 
       //- template(v-slot:top-selection)
@@ -71,6 +71,7 @@
         )
         q-space
         q-pagination(
+          size='sm'
           :value="pagination.page"
           :max="Math.trunc(pagination.rowsNumber / pagination.rowsPerPage)"
           :max-pages='$q.screen.lt.sm ? 5 : 7'
@@ -134,7 +135,7 @@ export default class PageTrainings extends Vue {
     {
       name: 'avgBallRating',
       align: 'center',
-      label: 'Avg Rating',
+      label: 'Avg',
       field: row => row.avgBallRating,
       // format: val => `${val}%`,
       sortable: false

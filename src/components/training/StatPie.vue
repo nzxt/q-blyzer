@@ -5,11 +5,9 @@
         type='pie'
         :options="pieChartOptions"
         :series="pieSeries"
+        width='100%'
       )
-        //- width=300
-        //- width='100%'
-        //- height=300
-        //- height='100%'
+        //- height=500
 </template>
 
 <script lang="ts">
@@ -30,15 +28,13 @@ export default class StatPie extends Vue {
     // breakpoint: 400,
     // options: {
     chart: {
-      width: '100%'
-      // height: 500
+      width: '100%',
+      height: 500
     },
     legend: {
-      show: false,
-      position: 'bottom',
-      floating: false
-      // height: 200
-      // offsetY: -150
+      // show: false,
+      // height: 200,
+      position: 'bottom'
     }
     // }
     // }],
@@ -65,6 +61,6 @@ export default class StatPie extends Vue {
 </script>
 
 <style lang="stylus">
-  .apexcharts-svg
-    height 600 !important
+  // .apexcharts-svg
+  //   height 600 !important
 </style>
