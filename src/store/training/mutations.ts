@@ -25,6 +25,8 @@ export function SET_BALLS (state: State, value: IBall[]) { state.balls = value }
 
 export function ADD_BALL (state: State, value: IBall) { state.balls.push(value) }
 
+export function SET_SHOT_BOX (state: State, value: number) { state.shotBox = value }
+
 export function SET_SHOT_TYPE (state: State, value: number) { state.shotType = value }
 
 export function SET_SHOT_DISTANCE (state: State, value: number) { state.shotDistance = value }

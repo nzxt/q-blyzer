@@ -1,9 +1,9 @@
 <template lang="pug">
   q-dialog(
-    persistent
     :value='dialog'
     @before-hide='$emit("before-hide")'
   )
+    //- persistent
     q-card(:style='$q.screen.lt.sm ? "width: 100vw" : "min-width: 360px"')
       q-card-section
         .text-h6 Create new training..
@@ -16,7 +16,7 @@
         select-player(:playerId.sync='playerId' @change:player='setPlayerId($event)')
 
       q-card-actions.row
-        q-btn.col-4(flat exact to='trainings')
+        q-btn.col-4(flat @click='onCancel')
           q-icon(left name='mdi-backburger')
           | Back
         q-space
@@ -50,6 +50,7 @@ export default class DialogInitializeTraining extends Vue {
   @TrainingNS.State('playerId') playerId
   @TrainingNS.Mutation('SET_PLAYER_ID') setPlayerId
   @TrainingNS.Action('createTraining') createTraining
+  @TrainingNS.Action('resetTraining') resetTraining
 
   loading: Boolean = false
 
@@ -77,6 +78,11 @@ export default class DialogInitializeTraining extends Vue {
 
     this.loading = false
     this.$emit('before-hide')
+  }
+
+  onCancel () {
+    this.resetTraining()
+    this.$router.push('trainings')
   }
 
   get dateTimeStamp (): Date {

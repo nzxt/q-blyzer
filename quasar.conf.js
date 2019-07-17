@@ -15,7 +15,8 @@ module.exports = function (ctx) {
     boot: [
       'i18n',
       'flags',
-      'timers'
+      'timers',
+      'konva'
     ],
 
     css: [
@@ -82,6 +83,7 @@ module.exports = function (ctx) {
         'QBreadcrumbsEl',
         'QLinearProgress',
         'QSlideTransition',
+        'QResizeObserver',
         'QPopupProxy'
       ],
 

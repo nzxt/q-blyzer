@@ -13,6 +13,7 @@ export interface State {
   details: Array<any>,
   playerId: string | null,
   balls: IBall[],
+  shotBox: number | null,
   shotType: number | null,
   shotDistance: number | null
 }
@@ -33,6 +34,7 @@ export const state = (): State => ({
   details: [],
   playerId: null,
   balls: [],
+  shotBox: null,
   shotType: null,
   shotDistance: null
 })

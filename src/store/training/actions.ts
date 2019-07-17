@@ -65,6 +65,7 @@ export function resetTraining ({ commit }) {
   commit('SET_DETAILS', [])
   commit('SET_PLAYER_ID', null)
   commit('SET_BALLS', [])
+  commit('SET_SHOT_BOX', null)
   commit('SET_SHOT_TYPE', null)
   commit('SET_SHOT_DISTANCE', null)
 }

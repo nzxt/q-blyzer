@@ -3,7 +3,7 @@
     q-card-section.row.q-pt-none
       .text-h6 Shots
       q-space
-      q-btn(color='warning' size='sm' rounded @click='')
+      q-btn(color='warning' size='sm' rounded @click='$emit("change:component", "Balls")')
         q-icon(left name='mdi-plus')
         | Add shots
     //- ChooseExercise(@exerciseSelected='onExerciseSelected')

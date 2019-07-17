@@ -4,8 +4,14 @@
       q-card-section
         Breadcrumbs(:items='breadcrumbs')
       q-card-section.q-pa-none
-        component#component(:is="component")
-    dialog-initialize-training(:dialog='dialogInitialize' @before-hide='dialogInitialize = false')
+        component#component(
+          :is="component"
+          @change:component='setComponent($event)'
+        )
+    dialog-initialize-training(
+      :dialog='dialogInitialize'
+      @before-hide='dialogInitialize = false'
+    )
 </template>
 
 <script lang="ts">
@@ -21,8 +27,8 @@ const TrainingNS = namespace('training')
   components: {
     DialogInitializeTraining: () => import('src/components/training/dialogs/InitializeTraining.vue'),
     Breadcrumbs: () => import('src/components/shared/breadcrumbs.vue'),
-    Results: () => import('src/components/training/Results.vue')
-    // Balls: () => import('src/components/training/Balls.vue')
+    Results: () => import('src/components/training/Results.vue'),
+    Balls: () => import('src/components/training/Balls.vue')
   }
 })
 export default class TrainingPage extends Vue {

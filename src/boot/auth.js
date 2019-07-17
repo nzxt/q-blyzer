@@ -50,9 +50,9 @@ export default ({ app, router, store, Vue }) => {
     const record = to.matched.find(record => record.meta.auth)
     if (record) {
       if (!store.getters['auth/loggedIn']) {
-        return router.push('/')
+        router.push('/')
       } else if (isArrayOrString(record.meta.auth) && !store.getters['auth/check'](record.meta.auth)) {
-        return router.push('/account')
+        router.push('/account')
       }
     }
     next()
