@@ -28,7 +28,7 @@
               rounded
               color="positive"
               :value="props.row.avgRating * 0.2"
-              style='width:40px'
+              style='width:75px'
             )
           q-td(key='count' :props='props')
             q-avatar(color='grey-3' size='24px') {{ props.row.count }}
@@ -86,7 +86,7 @@ export default class StatList extends Vue {
     },
     {
       name: 'distance',
-      label: 'Dist',
+      label: 'Distance',
       align: 'left',
       field: row => row.distance,
       // format: val => `${val}m`,
@@ -94,7 +94,7 @@ export default class StatList extends Vue {
     },
     {
       name: 'avgRating',
-      label: 'Avg',
+      label: 'Avg Rate',
       align: 'center',
       field: row => row.avgRating,
       // format: val => `${val.toFixed(1)}`,

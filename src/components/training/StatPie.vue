@@ -6,8 +6,8 @@
         :options="pieChartOptions"
         :series="pieSeries"
         width='100%'
+        height='300px'
       )
-        //- height=500
 </template>
 
 <script lang="ts">
@@ -28,8 +28,8 @@ export default class StatPie extends Vue {
     // breakpoint: 400,
     // options: {
     chart: {
-      width: '100%',
-      height: 500
+      // width: '100%'
+      // height: 500
     },
     legend: {
       // show: false,

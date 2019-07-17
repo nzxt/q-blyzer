@@ -1,6 +1,5 @@
 <template lang="pug">
   q-card(flat)
-    //:style='$q.screen.lt.sm ? "width: 100vw" : "min-width:360px"'
     q-card-section.row.q-pt-none
       .text-h6 Shots
       q-space
