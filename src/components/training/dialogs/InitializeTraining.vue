@@ -1,9 +1,10 @@
 <template lang="pug">
   q-dialog(
+    persistent
+    no-esc-dismiss
     :value='dialog'
     @before-hide='$emit("before-hide")'
   )
-    //- persistent
     q-card(:style='$q.screen.lt.sm ? "width: 100vw" : "min-width: 360px"')
       q-card-section
         .text-h6 Create new training..
@@ -20,7 +21,7 @@
           q-icon(left name='mdi-backburger')
           | Back
         q-space
-        q-btn.col-7(color='primary' @click='onSubmit' :loading='loading')
+        q-btn.col-7(color='warning' @click='onSubmit' :loading='loading' :disabled='!isValid')
           | Go!
 </template>
 
@@ -83,6 +84,10 @@ export default class DialogInitializeTraining extends Vue {
   onCancel () {
     this.resetTraining()
     this.$router.push('trainings')
+  }
+
+  get isValid (): Boolean {
+    return this.dateStamp && this.timeStamp && this.playerId
   }
 
   get dateTimeStamp (): Date {

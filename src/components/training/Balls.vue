@@ -1,8 +1,8 @@
 <template lang="pug">
   #balls
     q-card(flat)
-      q-card-section
-        | Hi, Balls!
+      q-card-section.text-center
+        .text-h6 Hi, Balls!
         //- TopPanel
         //- v-card-text
           v-select(
@@ -52,39 +52,28 @@
       :dialog='dialogChooseExercise'
       @before-hide='dialogChooseExercise = false'
     )
-      //- @exerciseSelected='onExerciseSelected'
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { namespace } from 'vuex-class'
 
-// import { IBall } from 'types/interfaces' // eslint-disable-line
-// import { Ball } from '~/types/classes'
-
-// import enums from '~/assets/enums'
-
 const TrainingNS = namespace('training')
 
 @Component({
   components: {
     ChooseExercise: () => import('src/components/training/dialogs/ChooseExercise.vue')
-    // TopPanel: () => import('./TopPanel.vue')
   }
 })
 export default class TrainingBalls extends Vue {
   dialogChooseExercise: Boolean = false
-
-  // enums: any = enums
-
-  // valid: Boolean = false
-  // isLoading: Boolean = false
 
   // shotRating: number = null
 
   // @TrainingNS.State('training') stateTraining
   // @TrainingNS.State('player') statePlayer
   // @TrainingNS.State('balls') stateBalls
+  @TrainingNS.State('shotBox') shotBox
   @TrainingNS.State('shotType') shotType
   @TrainingNS.State('shotDistance') shotDistance
 
@@ -93,7 +82,7 @@ export default class TrainingBalls extends Vue {
   // @TrainingNS.Mutation(types.SET_SHOT_TYPE) mutationSetShotType
 
   mounted () {
-    if (!this.shotType || !this.shotDistance) {
+    if (!this.shotType || !this.shotDistance || !this.shotBox) {
       this.dialogChooseExercise = true
     }
   }

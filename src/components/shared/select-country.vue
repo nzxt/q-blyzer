@@ -56,11 +56,7 @@ export default class SelectCountry extends Vue {
     return this.countries.find(x => x.id === this.countryId)
   }
 
-  filterFn (val, update, abort) {
-    // if (val.length < 1) {
-    //   abort()
-    //   return
-    // }
+  filterFn (val, update) {
     update(() => {
       const needle = val.toLowerCase()
       this.filter = needle

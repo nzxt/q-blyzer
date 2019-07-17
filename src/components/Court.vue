@@ -1,5 +1,5 @@
 <template lang="pug">
-  #stage-parent(style='height:calc(100vh - 125px)')
+  #stage-parent
     v-stage(ref='stage' :config='configStage')
       v-layer(ref='layer')
         // Field
@@ -77,19 +77,19 @@ const stageHeight = 1103
 
 @Component({})
 export default class Court extends Vue {
-  @TrainingNS.State('shotBox') stateShotBox
-  @TrainingNS.State('shotDistance') stateShotDistance
+  @TrainingNS.State('shotBox') shotBox
+  @TrainingNS.State('shotDistance') shotDistance
 
-  @TrainingNS.Mutation('SET_SHOT_BOX') mutationSetShotBox
-  @TrainingNS.Mutation('SET_SHOT_DISTANCE') mutationSetShotDistance
+  @TrainingNS.Mutation('SET_SHOT_BOX') setShotBox
+  @TrainingNS.Mutation('SET_SHOT_DISTANCE') setShotDistance
 
   scale: number = 1
 
   get box (): number {
-    return this.stateShotBox
+    return this.shotBox
   }
   set box (id: number) {
-    this.mutationSetShotBox(id)
+    this.setShotBox(id)
   }
 
   configStage: any = {
@@ -122,7 +122,7 @@ export default class Court extends Vue {
   configBall: any = {
     x: 301,
     y: 501,
-    radius: 25,
+    radius: 30,
     fill: 'orange',
     stroke: '#fafafa',
     strokeWidth: 5,
@@ -197,7 +197,7 @@ export default class Court extends Vue {
   configDistanceText: any = {
     x: 250,
     y: 900,
-    text: this.stateShotDistance ? `${this.stateShotDistance} m` : null,
+    text: this.shotDistance ? `${this.shotDistance} m` : null,
     fontSize: 56,
     fill: '#efefef',
     stroke: '#aaa',
@@ -257,7 +257,7 @@ export default class Court extends Vue {
     const length = Math.round(Math.sqrt((width / scale.x) ** 2 + (height / scale.y) ** 2))
 
     const distance = length / 100
-    this.mutationSetShotDistance(distance)
+    this.setShotDistance(distance)
 
     Object.assign(this.configDistanceText, {
       text: `${distance} m`
@@ -268,6 +268,7 @@ export default class Court extends Vue {
 
 <style lang="stylus" scoped>
   #stage-parent
+    height calc(100vh - 132px)
     >>> .konvajs-content
       margin 0 auto
 </style>

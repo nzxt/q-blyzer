@@ -62,16 +62,16 @@ module.exports = {
   },
 
   shotTypes: [
-    { id: 1, value: 'firstBall', text: 'First ball', abbr: 'FB' },
-    { id: 2, value: 'placement', text: 'Placement', abbr: 'PL' },
-    { id: 3, value: 'pushOn', text: 'Push on', abbr: 'PO' },
-    { id: 4, value: 'pushOff', text: 'Push off', abbr: 'PF' },
-    { id: 5, value: 'smash', text: 'Smash', abbr: 'SM' },
-    { id: 6, value: 'ricochet', text: 'Ricochet', abbr: 'RC' },
-    { id: 7, value: 'bounceOver', text: 'Bounce over', abbr: 'BO' },
-    { id: 8, value: 'rollOnTop', text: 'Roll on top', abbr: 'RT' },
-    { id: 9, value: 'rollUpAndOver', text: 'Roll up and over', abbr: 'RU' },
-    { id: 10, value: 'lobbingShot', text: 'Lob shot', abbr: 'LS' }
+    { id: 1, value: 'firstBall', label: 'First ball', abbr: 'FB' },
+    { id: 2, value: 'placement', label: 'Placement', abbr: 'PL' },
+    { id: 3, value: 'pushOn', label: 'Push on', abbr: 'PO' },
+    { id: 4, value: 'pushOff', label: 'Push off', abbr: 'PF' },
+    { id: 5, value: 'smash', label: 'Smash', abbr: 'SM' },
+    { id: 6, value: 'ricochet', label: 'Ricochet', abbr: 'RC' },
+    { id: 7, value: 'bounceOver', label: 'Bounce over', abbr: 'BO' },
+    { id: 8, value: 'rollOnTop', label: 'Roll on top', abbr: 'RT' },
+    { id: 9, value: 'rollUpAndOver', label: 'Roll up and over', abbr: 'RU' },
+    { id: 10, value: 'lobbingShot', label: 'Lob shot', abbr: 'LS' }
   ],
 
   deadBallTypes: [

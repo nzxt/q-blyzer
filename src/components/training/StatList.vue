@@ -3,7 +3,6 @@
     q-table.sticky-header-table(
       flat
       dense
-      square
       :data="data"
       :columns="columns"
       selection='multiple'
@@ -117,7 +116,7 @@ export default class StatList extends Vue {
     >>> .sticky-header-table
       /* max height is important */
       .q-table__middle
-        max-height calc(100vh - 264px)
+        max-height calc(100vh - 256px)
 
       .q-table__top,
       .q-table__bottom,
