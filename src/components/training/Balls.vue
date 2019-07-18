@@ -1,8 +1,8 @@
 <template lang="pug">
   #balls
     q-card(flat)
-      q-card-section.text-center
-        .text-h6 {{ getShotTypeName(shotType) }} @ {{ shotDistance ? shotDistance.toFixed(1) : 'XZ' }}m
+      q-card-section.text-center(v-if='shotType && shotDistance')
+        .text-h6 {{ getShotTypeName(shotType) }} @ {{ shotDistance.toFixed(1) }}m
 
       q-card-section(style='height: calc(100vh - 465px)')
         q-avatar(

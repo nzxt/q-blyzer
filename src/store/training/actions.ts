@@ -83,7 +83,7 @@ export function clearState ({ dispatch, commit }) {
     page: 1,
     rowsPerPage: 25,
     rowsNumber: 0
-  }
+  })
 }
 
 export async function createBall ({ commit }, item: IBall): Promise<any> {
