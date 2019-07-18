@@ -1,7 +1,7 @@
-import { IBall } from  '../../models/ball'
-import { IPlayer } from  '../../models/player'
-import { IMatch } from  '../../models/match'
-import { IPagination } from  '../../models/_interfaces'
+import { IBall } from  'src/models/ball'
+// import { IPlayer } from  'src/models/player'
+import { IMatch } from  'src/models/match'
+import { IPagination } from  'src/models/_interfaces'
 
 export interface State {
   component: string,
@@ -9,7 +9,7 @@ export interface State {
   list: IMatch[],
   pagination: IPagination,
 
-  player: IPlayer | null,
+  playerId: string | null,
   match: IMatch | null,
   balls: IBall[],
 }
@@ -26,7 +26,7 @@ export const state = (): State => ({
     rowsNumber: 0
   },
 
-  player: null,
+  playerId: null,
   match: null,
   balls: []
 })

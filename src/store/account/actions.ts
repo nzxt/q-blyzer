@@ -24,3 +24,7 @@ export async function update ({ dispatch }, value: IAppUser) {
       dispatch('fetch')
     })
 }
+
+export function clearState ({ commit }) {
+  commit('SET_APP_USER', null)
+}

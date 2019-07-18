@@ -93,15 +93,14 @@ import { IPagination } from '../models/_interfaces'
 const Training = namespace('training')
 
 @Component({
-  // preFetch ({ store }) {
-  //   return store.dispatch('training/fetchList')
-  // }
+  preFetch ({ store }) {
+    return store.dispatch('training/fetchList')
+  }
 })
 export default class PageTrainings extends Vue {
   @Training.State('list') trainingsList
   @Training.State('pagination') trainingsPagination
   @Training.Action('setTraining') setTraining
-  // @Training.Action('fetchById') fetchTrainingDetails
   // @Training.Action('fetchList') fetchList
   @Training.Action('setPagination') setTrainingPagination
   @Training.Action('deleteById') deleteTrainingById

@@ -74,6 +74,18 @@ export function resetTraining ({ commit }) {
   commit('SET_SHOT_DISTANCE', null)
 }
 
+export function clearState ({ dispatch, commit }) {
+  dispatch('resetTraining')
+  commit('SET_LIST', [])
+  commit('SET_PAGINATION', {
+    sortBy: 'dateTimeStamp',
+    descending: true,
+    page: 1,
+    rowsPerPage: 25,
+    rowsNumber: 0
+  }
+}
+
 export async function createBall ({ commit }, item: IBall): Promise<any> {
   await api.ApiBallPost({ item })
     .then(({ data }) => {

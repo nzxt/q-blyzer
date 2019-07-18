@@ -1,7 +1,7 @@
 import { State } from './state'
-import { IBall } from '../../models/ball'
-import { IPlayer } from '../../models/player'
-import { IMatch } from '../../models/match'
+import { IBall } from 'src/models/ball'
+// import { IPlayer } from 'src/models/player'
+import { IMatch } from 'src/models/match'
 import { IPagination } from 'src/models/_interfaces';
 
 // export const types = {
@@ -15,9 +15,11 @@ import { IPagination } from 'src/models/_interfaces';
 
 export function SET_COMPONENT (state: State, value: string) { state.component = value }
 
-export function SET_PLAYER (state: State, value: IPlayer) { state.player = value }
+export function SET_PLAYER_ID (state: State, value: string) { state.playerId = value }
 
 export function SET_MATCH (state: State, value: IMatch) { state.match = value }
+
+export function SET_BALLS (state: State, value: IBall[]) { state.balls = value }
 
 export function ADD_BALL (state: State, value: IBall) { state.balls.push(value) }
 

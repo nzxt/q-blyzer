@@ -1,10 +1,10 @@
 import { Notify } from 'quasar'
 import { axiosInstance } from './axios'
-import auth from '../store/auth'
+import auth from 'src/store/auth'
 
-import enUS from '../i18n/en-us/auth'
-import ruRU from '../i18n/ru-ru/auth'
-import ukUK from '../i18n/uk-uk/auth'
+import enUS from 'src/i18n/en-us/auth'
+import ruRU from 'src/i18n/ru-ru/auth'
+import ukUK from 'src/i18n/uk-uk/auth'
 
 // import { jsonapiModule } from 'jsonapi-vuex'
 
@@ -45,14 +45,14 @@ export default ({ app, router, store, Vue }) => {
   /**
    * Set route guard
    */
-  // TODO: Check return's
   router.beforeEach((to, from, next) => {
     const record = to.matched.find(record => record.meta.auth)
     if (record) {
-      if (!store.getters['auth/loggedIn']) {
-        router.push('/')
-      } else if (isArrayOrString(record.meta.auth) && !store.getters['auth/check'](record.meta.auth)) {
-        router.push('/account')
+      // if (!store.getters['auth/loggedIn']) {
+      if (!store.state.auth.user) {
+        return router.push('/')
+      // } else if (isArrayOrString(record.meta.auth) && !store.getters['auth/check'](record.meta.auth)) {
+      //   router.push('/account')
       }
     }
     next()
@@ -142,9 +142,8 @@ export default ({ app, router, store, Vue }) => {
   store.watch((state, getters) => getters['auth/loggedIn'], (isLoggedIn) => {
     if (isLoggedIn) {
       initStore()
-      // router.push('/')
     } else {
-      // router.push('/')
+      cleanStore()
     }
   })
 
@@ -156,13 +155,12 @@ export default ({ app, router, store, Vue }) => {
   }
 
   function cleanStore () {
-    // store.commit('training/CLEAR_STATE')
+    store.dispatch('account/clearState')
+    store.dispatch('match/clearState')
+    store.dispatch('training/clearState')
   }
 
   store.dispatch('auth/fetch')
-    // .then(() => {
-    //   if (!store.getters('auth/loggedIn')) return
-    // })
     .catch(() => {
       store.dispatch('auth/logout')
     })

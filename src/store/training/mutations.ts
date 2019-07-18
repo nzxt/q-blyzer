@@ -1,8 +1,8 @@
 import { State } from './state'
-import { IBall } from '../../models/ball'
-// import { IPlayer } from '../../models/player'
-import { ITraining } from '../../models/training'
-import { IPagination } from 'src/models/_interfaces';
+import { IBall } from 'src/models/ball'
+// import { IPlayer } from 'src/models/player'
+import { ITraining } from 'src/models/training'
+import { IPagination } from 'src/models/_interfaces'
 
 // export const types = {
 //   SET_COMPONENT: 'SET_COMPONENT',
