@@ -6,8 +6,8 @@
       no-esc-dismiss
       :value='dialog'
       @before-hide='$emit("before-hide")'
-      transition-show='rotate'
-      transition-hide='rotate'
+      transition-show='fade'
+      transition-hide='fade'
     )
       q-card(:style='$q.screen.lt.sm ? "width: 100vw" : "min-width: 360px"')
         q-card-section
@@ -17,13 +17,13 @@
           Court
 
         q-card-actions.row.q-py-md.q-gutter-sm
-          q-btn.col-3(flat @click='onCancel')
-            q-icon(left name='mdi-arrow-left-drop-circle-outline')
+          q-btn.col-3(@click='onCancel')
+            //- q-icon(left name='mdi-arrow-left-drop-circle-outline')
             | {{ $t('forms.back') }}
           SelectShotType.col
           q-btn.col-3(color='warning' @click='onSubmit' :disabled='!isValid')
             | {{ $t('forms.start') }}
-            q-icon(right name='mdi-arrow-right-drop-circle-outline')
+            //- q-icon(right name='mdi-arrow-right-drop-circle-outline')
 </template>
 
 <script lang="ts">

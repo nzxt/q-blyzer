@@ -8,7 +8,7 @@
         q-item-section(avatar)
           q-icon(name='mdi-account-edit' size='28px' @click.stop='$auth.refresh()')
         q-item-section
-          q-item-label {{ $t('auth.my_account') }}
+          q-item-label {{ $t('auth.account') }}
 
       q-item.text-secondary(v-if='!this.$auth.check()' clickable @click='$router.push("/login")')
         q-item-section(avatar)

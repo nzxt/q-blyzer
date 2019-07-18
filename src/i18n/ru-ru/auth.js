@@ -9,6 +9,7 @@ export default {
     network_error: 'Network error. Please check your internet connection',
     submit: 'Submit',
     home: 'Home',
+    account: 'Account',
     navigation: 'Navigation',
     my_account: 'My account',
     administrator: {

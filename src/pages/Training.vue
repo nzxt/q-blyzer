@@ -73,10 +73,3 @@ export default class TrainingPage extends Vue {
   }
 }
 </script>
-
-<style lang="stylus">
-  #component
-    width 100%
-    min-width 312px
-    max-width 460px
-</style>

@@ -24,6 +24,8 @@ export default {
   "signout": "Sign Out",
   "back": "Back",
   "save": "Save",
+  "undo": "Undo",
+  "redo": "Redo",
   "update": "Update",
   "messages": {
     "signin_title": "Enter your account",

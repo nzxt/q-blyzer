@@ -18,19 +18,20 @@
           q-td(auto-width)
             q-checkbox(dense v-model='props.selected')
 
-          q-td(key='shotType' :props='props') {{ props.row.shotType }}
+          q-td(key='shotType' :props='props')
+            q-badge(color='info')
+              | {{ props.row.shotTypeAbbr }}
           q-td(key='distance' :props='props') {{ props.row.distance }}m
           q-td(key='avgRating' :props='props')
             //- q-badge(square color='secondary') {{ props.row.avgRating.toFixed(1) }}
             | {{ props.row.avgRating.toFixed(1) }}
-            q-linear-progress(
+            q-linear-progress.full-width(
               rounded
               color="positive"
               :value="props.row.avgRating * 0.2"
-              style='width:75px'
             )
           q-td(key='count' :props='props')
-            q-avatar(color='grey-3' size='24px') {{ props.row.count }}
+            q-avatar(color='grey-4' size='20px') {{ props.row.count }}
 
       template(v-slot:bottom='props')
         q-select(
@@ -78,7 +79,7 @@ export default class StatList extends Vue {
     {
       name: 'shotType',
       label: 'Type',
-      align: 'left',
+      align: 'center',
       field: row => row.shotType,
       // format: val => `${val}`,
       sortable: true
@@ -102,7 +103,7 @@ export default class StatList extends Vue {
     {
       name: 'count',
       label: 'Count',
-      align: 'left',
+      align: 'center',
       field: row => row.count,
       // format: val => `${val}`,
       sortable: true

@@ -2,52 +2,40 @@
   #balls
     q-card(flat)
       q-card-section.text-center
-        .text-h6 Hi, Balls!
-        //- TopPanel
-        //- v-card-text
-          v-select(
-            v-model='shotType'
-            :items="enums.shotTypes"
-            item-text='text'
-            item-value='id'
-            hide-selected
-            hide-details
-            open-on-clear
-            box
-            label="Shot type"
+        .text-h6 {{ getShotTypeName(shotType) }} @ {{ shotDistance ? shotDistance.toFixed(1) : 'XZ' }}m
+
+      q-card-section(style='height: calc(100vh - 465px)')
+        q-avatar(
+          size='30px'
+          v-for='ball in balls'
+          :key='ball.id'
+        )
+          q-icon(size='30px' color='primary' :name='shotIcon(ball.rating)')
+
+        q-icon.mdi-spin(size='30px' color='grey-5' name='mdi-star-circle-outline')
+
+      q-card-actions.column.q-ma-sm.fixed-bottom.bg-white
+        .row.justify-center
+          .text-subtitle1.text-grey-6 Rate Shot {{ `#${shotIndex}` }}
+        .row.justify-center
+          q-rating.q-pb-md(
+            v-model="shotRating"
+            size="3.5em"
+            color="warning"
+            icon="mdi-star-outline"
+            @input='onRateShot'
           )
+        .row
+          q-btn(rounded stacked @click='onUndo' :disabled='!balls.length')
+            q-icon(left name='mdi-reply')
+            .q-mr-md {{ $t('undo') }}
 
-        //- v-card-title.justify-center(v-if='!stateBalls.length')
-        //-   div.headline.grey--text.text--lighten-1
-        //-     | Let's throw balls!
-        //- v-card-text(v-else style='max-height:50vh;overflow-y:auto;')
-        //-   v-avatar(
-        //-     style='margin:5px 2px;'
-        //-     :size='24'
-        //-     color='primary'
-        //-     v-for='ball in stateBalls'
-        //-     :key='ball.id'
-        //-   )
-        //-     span.white--text.body-2.font-weight-thin {{ ball.rating }}
+          q-space
 
-        //- v-spacer
-        //- v-card-text.pb-0.text-xs-center
-        //-   span.title.grey--text.font-weight-thin Rate Shot {{ `#${shotIndex}` }}
-        //-   v-rating(
-        //-     v-model='shotRating'
-        //-     @click.native='onRateShot'
-        //-     color='orange'
-        //-     large
-        //-   )
+          q-btn(rounded color='warning' :loading='loading' :disabled='!balls.length' @click='onFinish')
+            .q-ml-md {{ $t('forms.finish') }}
+            q-icon(right name='mdi-flag-checkered')
 
-        //- v-card-actions
-        //-   v-btn.secondary(icon large @click='onCancel' :disabled='stateBalls.length < 1')
-        //-     v-icon.mdi-24px mdi-reply
-        //-     //- | {{ $t('forms.back') }}
-        //-   v-spacer
-        //-   v-btn.warning(icon large type='submit' :loading='isLoading' :disabled='!stateBalls.length')
-        //-     //- | {{ $t('forms.finish') }}
-        //-     v-icon.mdi-24px mdi-flag-checkered
     ChooseExercise(
       :dialog='dialogChooseExercise'
       @before-hide='dialogChooseExercise = false'
@@ -57,6 +45,9 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { namespace } from 'vuex-class'
+
+import { IBall, Ball } from 'src/models/ball'
+import { getShotTypeName, getShotDistanceName } from 'src/utils/enums-helper'
 
 const TrainingNS = namespace('training')
 
@@ -68,18 +59,27 @@ const TrainingNS = namespace('training')
 export default class TrainingBalls extends Vue {
   dialogChooseExercise: Boolean = false
 
-  // shotRating: number = null
+  loading: Boolean = false
+  shotRating: number = 0
 
-  // @TrainingNS.State('training') stateTraining
-  // @TrainingNS.State('player') statePlayer
-  // @TrainingNS.State('balls') stateBalls
+  @TrainingNS.State('training') training
+  @TrainingNS.State('playerId') playerId
+  @TrainingNS.State('balls') balls
   @TrainingNS.State('shotBox') shotBox
   @TrainingNS.State('shotType') shotType
   @TrainingNS.State('shotDistance') shotDistance
 
-  // @TrainingNS.Mutation(types.ADD_BALL) mutationAddBall
-  // @TrainingNS.Mutation(types.DELETE_BALL_BY_INDEX) mutationDeleteBallByIndex
-  // @TrainingNS.Mutation(types.SET_SHOT_TYPE) mutationSetShotType
+  @TrainingNS.Action('createBall') createBall
+  @TrainingNS.Action('deleteBallById') deleteBallById
+
+  @TrainingNS.Mutation('SET_COMPONENT') setComponent
+  @TrainingNS.Mutation('SET_BALLS') setBalls
+  @TrainingNS.Mutation('SET_SHOT_BOX') setShotBox
+  @TrainingNS.Mutation('SET_SHOT_TYPE') setShotType
+  @TrainingNS.Mutation('SET_SHOT_DISTANCE') setShotDistance
+
+  getShotTypeName: Function = getShotTypeName
+  getShotDistanceName: Function = getShotDistanceName
 
   mounted () {
     if (!this.shotType || !this.shotDistance || !this.shotBox) {
@@ -87,67 +87,52 @@ export default class TrainingBalls extends Vue {
     }
   }
 
-  // async onRateShot (): Promise<any> {
-  //   if (this.isLoading) return
-  //   this.isLoading = true
-  //   await this.createBall(this.prepareBall())
+  async onRateShot (rate: number): Promise<any> {
+    if (this.loading) return
+    this.loading = true
+    await this.createBall(this.prepareBall())
 
-  //   setTimeout(() => {
-  //     this.isLoading = false
-  //     this.shotRating = null
-  //   }, 680)
-  // }
+    setTimeout(() => {
+      this.loading = false
+      this.shotRating = 0
+    }, 680)
+  }
 
-  // async onCancel () {
-  //   const lastBallIndex = this.stateBalls.length - 1
-  //   await this.deleteBall(this.stateBalls[lastBallIndex].id)
-  //   this.mutationDeleteBallByIndex(lastBallIndex)
-  //   // this.$emit('changeComponent', 'Results')
-  // }
+  onUndo () {
+    const lastBallIndex = this.balls.length - 1
+    this.deleteBallById(this.balls[lastBallIndex].id)
+  }
 
-  // onSubmit (): void {
-  //   this.$emit('changeComponent', 'Results')
-  // }
+  onFinish (): void {
+    this.setBalls([])
+    this.setShotBox(null)
+    this.setShotType(null)
+    this.setShotDistance(null)
+    this.setComponent('Results')
+  }
 
-  // async createBall (item: IBall): Promise<any> {
-  //   await this.$api.ApiBallPost({ item })
-  //     .then(({ data }) => {
-  //       item.id = data
-  //       this.mutationAddBall(item)
-  //       // this.$noty.success('<span class="subheading">Ball successfully created!</span>')
-  //     })
-  //     .catch((err) => {
-  //       console.warn(err)
-  //       this.$noty.error('Ball creation failed :(')
-  //     })
-  // }
+  prepareBall (): IBall {
+    const ball: IBall = new Ball(this.shotIndex, this.playerId)
 
-  // prepareBall (): IBall {
-  //   const playerId = '58d7216a-db42-4bea-86f7-aa1c16f5187e' // Artem Kolinko
-  //   // const playerId = this.statePlayer.id
-  //   const ball: IBall = new Ball(this.shotIndex, playerId)
+    ball.rating = this.shotRating
+    ball.shotType = this.shotType
+    ball.distance = Math.round(this.shotDistance)
+    ball.trainingId = this.training.id
 
-  //   ball.rating = this.shotRating
-  //   ball.shotType = this.stateShotType
-  //   ball.distance = Math.round(this.stateShotDistance)
-  //   ball.trainingId = this.stateTraining.id
+    return ball
+  }
 
-  //   return ball
-  // }
+  shotIcon (rate: number): string {
+    return `mdi-numeric-${rate}-circle`
+  }
 
-  // async deleteBall (id: string) {
-  //   await this.$api.ApiBallByIdDelete({ id })
-  //     .then(() => {
-  //       this.$noty.info('Ball deleted sucessfully!')
-  //     })
-  //     .catch((err) => {
-  //       console.warn(err)
-  //       this.$noty.error('Ball deletion failed!')
-  //     })
-  // }
-
-  // get shotIndex (): number {
-  //   return this.stateBalls.length + 1
-  // }
+  get shotIndex (): number {
+    return this.balls.length + 1
+  }
 }
 </script>
+
+<style lang="stylus" scoped>
+  #balls
+    max-width 360px
+</style>

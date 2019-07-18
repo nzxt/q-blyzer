@@ -41,3 +41,8 @@ export function DELETE_BY_ID (state: State, id: string) {
   const index = state.list.findIndex(t => t.id === id)
   state.list.splice(index, 1)
 }
+
+export function DELETE_BALL_BY_ID (state: State, id: string) {
+  const index = state.balls.findIndex(t => t.id === id)
+  state.balls.splice(index, 1)
+}

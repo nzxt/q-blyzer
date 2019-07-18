@@ -268,7 +268,7 @@ export default class Court extends Vue {
 
 <style lang="stylus" scoped>
   #stage-parent
-    height calc(100vh - 132px)
+    height calc(100vh - 136px)
     >>> .konvajs-content
       margin 0 auto
 </style>

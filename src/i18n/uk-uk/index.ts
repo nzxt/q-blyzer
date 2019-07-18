@@ -24,6 +24,8 @@ export default {
   "signout": "Вийти",
   "back": "Повернутись",
   "save": "Зберегти",
+  "undo": "Відмінити",
+  "redo": "Примінити",
   "update": "Оновити",
   "messages": {
     "signin_title": "Увійдіть в свій акаунт",

@@ -79,6 +79,7 @@ module.exports = function (ctx) {
         'QTh',
         'QTr',
         'QTd',
+        'QRating',
         'QBreadcrumbs',
         'QBreadcrumbsEl',
         'QLinearProgress',

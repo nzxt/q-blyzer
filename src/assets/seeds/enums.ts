@@ -103,23 +103,23 @@ module.exports = {
   },
 
   throwDistances: [
-    { id: 0, value: 'Undefined', text: 'unknown' },
-    { id: 1, value: 'From15To20', text: '1m' },
-    { id: 2, value: 'From20To25', text: '2m' },
-    { id: 3, value: 'From25To30', text: '3m' },
-    { id: 4, value: 'From30To35', text: '4m' },
-    { id: 5, value: 'From35To40', text: '5m' },
-    { id: 6, value: 'From40To45', text: '6m' },
-    { id: 7, value: 'From45To50', text: '7m' },
-    { id: 8, value: 'From50To55', text: '8m' },
-    { id: 9, value: 'From55To60', text: '10m' },
-    { id: 10, value: 'From60To65', text: '11m' },
-    { id: 11, value: 'From65To75', text: '12m' }
-    // { id: 12, value: 'From70To75', text: '7.0m' },
-    // { id: 13, value: 'From75To80', text: '7.5m' },
-    // { id: 14, value: 'From80To85', text: '7.0m' },
-    // { id: 15, value: 'From85To90', text: '8.5m' },
-    // { id: 16, value: 'From90To95', text: '8.0m' },
-    // { id: 17, value: 'From95To100', text: '9.5m' }
+    { id: 0, value: 'Undefined', label: 'unknown' },
+    { id: 1, value: 'From15To20', label: '1m' },
+    { id: 2, value: 'From20To25', label: '2m' },
+    { id: 3, value: 'From25To30', label: '3m' },
+    { id: 4, value: 'From30To35', label: '4m' },
+    { id: 5, value: 'From35To40', label: '5m' },
+    { id: 6, value: 'From40To45', label: '6m' },
+    { id: 7, value: 'From45To50', label: '7m' },
+    { id: 8, value: 'From50To55', label: '8m' },
+    { id: 9, value: 'From55To60', label: '10m' },
+    { id: 10, value: 'From60To65', label: '11m' },
+    { id: 11, value: 'From65To75', label: '12m' }
+    // { id: 12, value: 'From70To75', label: '7.0m' },
+    // { id: 13, value: 'From75To80', label: '7.5m' },
+    // { id: 14, value: 'From80To85', label: '7.0m' },
+    // { id: 15, value: 'From85To90', label: '8.5m' },
+    // { id: 16, value: 'From90To95', label: '8.0m' },
+    // { id: 17, value: 'From95To100', label: '9.5m' }
   ]
 }

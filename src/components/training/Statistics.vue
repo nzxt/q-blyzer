@@ -78,9 +78,3 @@ export default class TrainingStatistics extends Vue {
   // }
 }
 </script>
-
-<style lang="stylus" scoped>
-  // .v-tabs
-  //   >>> .v-tabs__container
-  //     height: 36px !important
-</style>

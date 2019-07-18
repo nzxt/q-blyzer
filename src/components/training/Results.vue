@@ -31,6 +31,11 @@ export default class TrainingResults extends Vue {
   @TrainingNS.State('training') training
   @TrainingNS.State('details') trainingDetails
   @TrainingNS.Action('resetTraining') resetTraining
+  @TrainingNS.Action('fetchById') fetchTrainingDetails
+
+  mounted () {
+    this.fetchTrainingDetails(this.training.id)
+  }
 
   onClickBack (): void {
     this.resetTraining()
