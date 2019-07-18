@@ -2,7 +2,6 @@
   #stat-list
     q-table.sticky-header-table(
       flat
-      dense
       :data="data"
       :columns="columns"
       selection='multiple'
@@ -10,8 +9,9 @@
       :pagination.sync="pagination"
       :rows-per-page-options="rowsPerPageOptions"
       row-key="id"
+      binary-state-sort
     )
-      //- binary-state-sort
+      //- dense
       //- :selected-rows-label='(numberOfRows) => `${numberOfRows} selected`'
       template(v-slot:body="props")
         q-tr(:props='props')

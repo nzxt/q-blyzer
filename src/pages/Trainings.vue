@@ -3,7 +3,6 @@
     q-table.sticky-header-table(
       :style='$q.screen.lt.sm ? "width: 100vw" : "min-width:360px"'
       title="Trainings"
-      :dense="$q.screen.lt.md"
       :data="trainingsList"
       :columns="columns"
       row-key="id"
@@ -15,6 +14,7 @@
       binary-state-sort
       @request="onRequest"
     )
+      //- :dense="$q.screen.lt.md"
       //- :sort-method="customSort"
       template(v-slot:top-right)
         q-btn(

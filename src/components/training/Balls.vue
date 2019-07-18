@@ -112,7 +112,10 @@ export default class TrainingBalls extends Vue {
   }
 
   prepareBall (): IBall {
-    const ball: IBall = new Ball(this.shotIndex, this.playerId)
+    const playerId = this.playerId ||
+      this.$store.state.account.appUser.playerId ||
+      '58d7216a-db42-4bea-86f7-aa1c16f5187e'
+    const ball: IBall = new Ball(this.shotIndex, playerId)
 
     ball.rating = this.shotRating
     ball.shotType = this.shotType
