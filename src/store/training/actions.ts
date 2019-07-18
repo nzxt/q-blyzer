@@ -31,10 +31,12 @@ export async function setTraining ({ commit, dispatch }, value: ITraining) {
   await dispatch('fetchById', value.id)
 }
 
-export async function createTraining ({ /* dispatch */ }, item: ITraining) {
+export async function createTraining ({ dispatch, commit }, item: ITraining) {
   await api.ApiTrainingPost({ item })
     .then(async ({ data }) => {
-      // await dispatch('fetchById', data)
+      item.id = data
+      // await dispatch('fetchTraining', data)
+      commit('SET_TRAINING', item)
       Notify.create({
         color: 'positive',
         icon: 'mdi-check-circle-outline',
@@ -42,6 +44,13 @@ export async function createTraining ({ /* dispatch */ }, item: ITraining) {
       })
     })
 }
+
+// export async function fetchTraining ({ commit }, id: string) {
+//   await api.ApiTrainingGet({ filter: `id="${id}"` })
+//     .then(({ data }) => {
+//       commit('SET_TRAINING', data.items[0])
+//     })
+// }
 
 export async function fetchById ({ commit }, id: string) {
   await api.ApiTrainingByIdGet({ id })

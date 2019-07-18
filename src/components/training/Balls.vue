@@ -82,6 +82,14 @@ export default class TrainingBalls extends Vue {
   getShotDistanceName: Function = getShotDistanceName
 
   mounted () {
+    if (!this.training || !this.training.id) {
+      this.$q.notify({
+        color: 'negative',
+        icon: 'mdi-alert-octagon-outline',
+        message: 'There are no training :( Returning...'
+      })
+      this.setComponent('Results')
+    }
     if (!this.shotType || !this.shotDistance || !this.shotBox) {
       this.dialogChooseExercise = true
     }
