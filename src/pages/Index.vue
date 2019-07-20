@@ -16,11 +16,17 @@
         img(alt='Blyzer Logo' src='statics/boccia-jack-ball.jpg' height='260px')
 
     q-footer.bg-white.text-primary(bordered)
-      q-tabs.text-brand(no-caps align='justify' indicator-color='transparent')
+      q-tabs.text-brand(no-caps align='justify' indicator-color='transparent' v-if='$auth.loggedIn()')
         q-route-tab(name='matches' icon='mdi-trophy' label='Your Matches' exact to='matches' disabled)
           q-badge(v-if='matchesPagination.rowsNumber' color='red' floating) {{ matchesPagination.rowsNumber }}
         q-route-tab(name='trainings' icon='mdi-triforce' label='Your Trainings' exact to='trainings')
           q-badge(v-if='trainingsPagination.rowsNumber' color='red' floating) {{ trainingsPagination.rowsNumber }}
+
+      q-tabs.text-brand(no-caps align='justify' indicator-color='transparent' v-else)
+        q-route-tab(name='login' icon='mdi-login-variant' label='Login' exact to='login')
+          q-badge(color='warning' floating) Now
+        q-route-tab(name='register' icon='mdi-account-box-outline' label='Register' exact to='register')
+          q-badge(color='warning' floating) Free
 </template>
 
 <style>
@@ -63,41 +69,41 @@ export default class ResultsPage extends Vue {
 </script>
 
 <style lang="stylus">
-.animation
-  font-family 'Comforta'
-  font-weight 100
-  color #a2a2a2
+  .animation
+    font-family 'Comforta'
+    font-weight 100
+    color #a2a2a2
 
-.text
-  font-size 12vmin
-  line-height 1.205
+  .text
+    font-size 12vmin
+    line-height 1.205
 
-.text__first, .text__second
-  position relative
+  .text__first, .text__second
+    position relative
 
-.text__word
-  opacity 0
+  .text__word
+    opacity 0
 
-.text__first-bg, .text__second-bg
-  display block
-  width 100%
-  height 100%
-  position absolute
-  left 0
-  top 0
-  z-index 100
-  transform-origin left
-  transform scaleX(0)
+  .text__first-bg, .text__second-bg
+    display block
+    width 100%
+    height 100%
+    position absolute
+    left 0
+    top 0
+    z-index 100
+    transform-origin left
+    transform scaleX(0)
 
-.text__first-bg
-  background-color #00B0FF
+  .text__first-bg
+    background-color #00B0FF
 
-.text__second-bg
-  background-color #FFD600
+  .text__second-bg
+    background-color #FFD600
 
-.text__first
-  margin-left 2vmin
+  .text__first
+    margin-left 2vmin
 
-.text__second
-  margin-left 10vmin
+  .text__second
+    margin-left 10vmin
 </style>

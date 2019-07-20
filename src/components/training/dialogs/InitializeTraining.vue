@@ -82,8 +82,8 @@ export default class DialogInitializeTraining extends Vue {
   }
 
   onCancel () {
-    this.resetTraining()
     this.$router.push('trainings')
+    this.resetTraining()
   }
 
   get isValid (): Boolean {

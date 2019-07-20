@@ -43,22 +43,6 @@ export default ({ app, router, store, Vue }) => {
   // store.registerModule('jv', jsonapiModule(axiosInstance, { preserveJson: true }))
 
   /**
-   * Set route guard
-   */
-  router.beforeEach((to, from, next) => {
-    const record = to.matched.find(record => record.meta.auth)
-    if (record) {
-      // if (!store.getters['auth/loggedIn']) {
-      if (!store.state.auth.user) {
-        return router.push('/')
-      // } else if (isArrayOrString(record.meta.auth) && !store.getters['auth/check'](record.meta.auth)) {
-      //   router.push('/account')
-      }
-    }
-    next()
-  })
-
-  /**
    * Set authentication routes
    */
   let { routes } = router.options
@@ -137,6 +121,24 @@ export default ({ app, router, store, Vue }) => {
   // })
 
   router.addRoutes([routeData])
+
+  /**
+   * Set route guard
+   */
+  router.beforeEach((to, from, next) => {
+    const record = to.matched.find(record => record.meta.auth)
+    const isLoggedIn = !!store.state.auth.user
+    // const { appUser } = store.state.account
+    if (record) {
+      // if (!store.getters['auth/loggedIn']) {
+      if (!isLoggedIn) {
+        return next('/')
+      // } else if (isArrayOrString(record.meta.auth) && !store.getters['auth/check'](record.meta.auth)) {
+      //   router.push('/account')
+      }
+    }
+    next()
+  })
 
   /* Only _actual_ login/outs (including resets) will be watched here. */
   store.watch((state, getters) => getters['auth/loggedIn'], (isLoggedIn) => {

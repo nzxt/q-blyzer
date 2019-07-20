@@ -1,37 +1,43 @@
 <template lang="pug">
-  q-select(
-    label="Athlete"
-    :value="player"
-    input-debounce="0"
-    :use-input='!player'
-    emit-value
-    options-dense
-    option-value='id'
-    option-label='fullName'
-    :options="options"
-    @filter="filterFn"
-    @input='$emit("change:player", $event)'
-  )
-    //- :use-input='!player'
-    template(v-slot:option='scope')
-      q-item.q-py-none.q-px-md(
-        dense
-        v-bind='scope.itemProps'
-        v-on='scope.itemEvents'
-      )
-        q-item-section
-          span.text-body2 {{ scope.opt.fullName }}
-        q-item-section(avatar)
-          q-avatar(size='24px')
-            flag(:iso='countryById(scope.opt.countryId).alpha2', style='font-size:24px;border-radius:50%')
+  #select-player
+    q-select(
+      label="Athlete"
+      :value="player"
+      input-debounce="0"
+      :use-input='!player'
+      emit-value
+      options-dense
+      option-value='id'
+      option-label='fullName'
+      :options="options"
+      @filter="filterFn"
+      @input='$emit("change:player", $event)'
+    )
+      //- :use-input='!player'
+      template(v-slot:option='scope')
+        q-item.q-py-none.q-px-md(
+          dense
+          v-bind='scope.itemProps'
+          v-on='scope.itemEvents'
+        )
+          q-item-section
+            span.text-body2 {{ scope.opt.fullName }}
+          q-item-section(avatar)
+            q-avatar(size='24px')
+              flag(:iso='countryById(scope.opt.countryId).alpha2', style='font-size:24px;border-radius:50%')
 
-    template(v-slot:selected-item='scope')
-      q-avatar(size='18px')
-        flag(:iso='countryById(player.countryId).alpha2', style='font-size:18px;border-radius:50%')
-      span.q-ml-sm {{ scope.opt.fullName }}
+      template(v-slot:selected-item='scope')
+        q-avatar(size='18px')
+          flag(:iso='countryById(player.countryId).alpha2', style='font-size:18px;border-radius:50%')
+        span.q-ml-sm {{ scope.opt.fullName }}
 
-    template(v-slot:append)
-      q-icon(name='mdi-close' v-if='player' @click='$emit("change:player", null)')
+      template(v-slot:prepend v-if='!player')
+        q-icon(name='mdi-account-plus' @click.stop.prevent='onCreatePlayer')
+
+      template(v-slot:append)
+        q-icon(name='mdi-close' v-if='player' @click='$emit("change:player", null)')
+
+    dialog-create-player(:dialog='dialogCreatePlayer' @before-hide='dialogCreatePlayer = false')
 </template>
 
 <script lang="ts">
@@ -44,11 +50,16 @@ import { IPlayer } from 'src/models/player'
 const Dictionaries = namespace('dictionaries')
 
 @Component({
+  components: {
+    DialogCreatePlayer: () => import('src/components/dialogs/create-player.vue')
+  },
   mixins: [MixinCountry]
 })
 export default class SelectPlayer extends Vue {
   @Prop({ default: '' })
   readonly playerId!: string
+
+  dialogCreatePlayer: Boolean = false
 
   @Dictionaries.State('players') players
   @Dictionaries.State('countries') countries
@@ -75,6 +86,10 @@ export default class SelectPlayer extends Vue {
       const needle = val.toLowerCase()
       this.filter = needle
     })
+  }
+
+  onCreatePlayer () {
+    this.dialogCreatePlayer = true
   }
 }
 </script>

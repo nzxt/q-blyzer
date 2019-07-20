@@ -14,15 +14,15 @@ const routes: RouteConfig[] = [
         component: () => import('src/pages/Trainings.vue')
       },
       {
+        path: 'training',
+        meta: { auth: true },
+        component: () => import('src/pages/Training.vue')
+      },
+      {
         path: 'matches',
         meta: { auth: true },
         component: () => import('src/pages/Matches.vue')
       },
-      {
-        path: 'training',
-        meta: { auth: true },
-        component: () => import('src/pages/Training.vue')
-      }
       // {
       //   path: 'match',
       //   meta: { auth: true },
@@ -36,7 +36,7 @@ const routes: RouteConfig[] = [
 if (process.env.MODE !== 'ssr') {
   routes.push({
     path: '*',
-    component: () => import('src/pages/Error404.vue')
+    component: () => import('src/pages/Error404')
   })
 }
 

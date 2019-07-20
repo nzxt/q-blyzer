@@ -54,7 +54,7 @@
     q-page-container
       router-view
 
-    create-new(:dialog='dialogCreateNew' @before-hide='dialogCreateNew = false')
+    dialog-create-new(:dialog='dialogCreateNew' @before-hide='dialogCreateNew = false')
 </template>
 
 <script lang="ts">
@@ -63,7 +63,7 @@ import { Component, Vue } from 'vue-property-decorator'
 @Component({
   components: {
     AuthMenu: () => import('./auth/AuthMenu.vue'),
-    CreateNew: () => import('src/components/dialogs/CreateNew.vue')
+    DialogCreateNew: () => import('src/components/dialogs/create-new.vue')
   }
 })
 export default class LayoutDefault extends Vue {

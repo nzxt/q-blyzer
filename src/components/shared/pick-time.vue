@@ -1,6 +1,7 @@
 <template lang="pug">
   q-input(
     mask="time"
+    hide-bottom-space
     :value="time"
     :label="label"
     :rules="['time']"

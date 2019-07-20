@@ -5,15 +5,15 @@
     transition-hide="flip-up"
     @before-hide='$emit("before-hide")'
   )
-    q-card(:style='$q.screen.lt.sm ? "width: 100vw" : "min-width:10em"')
+    q-card(:style='$q.screen.lt.sm ? "width: 100vw" : "min-width:30em"')
       q-card-section
         .text-h6 Create new..
       q-card-section.row.q-gutter-md
         q-btn.col(stack @click='createNew("match")' disabled)
-          q-icon(name='mdi-trophy' size='36px')
+          q-icon(name='mdi-trophy' size='3em')
           .text-subtitle1.q-pt-xs Match
         q-btn.col(stack @click='createNew("training")')
-          q-icon(name='mdi-triforce' size='36px')
+          q-icon(name='mdi-triforce' size='3em')
           .text-subtitle1.q-pt-xs Training
 </template>
 
@@ -25,10 +25,10 @@ const TrainingNS = namespace('training')
 
 @Component({})
 export default class DialogCreateNew extends Vue {
-  @TrainingNS.Action('resetTraining') resetTraining
-
   @Prop({ default: false })
   readonly dialog!: Boolean
+
+  @TrainingNS.Action('resetTraining') resetTraining
 
   createNew (type: string) {
     switch (type) {
