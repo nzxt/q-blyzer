@@ -1,6 +1,6 @@
 <template lang="pug">
   q-page.flex.flex-center
-    q-card#profile-card.q-ma-sm(:style='$q.screen.lt.sm ? "width:100vw" : "min-width:360px"')
+    q-card#profile-card.q-ma-sm(:style='$q.screen.lt.sm ? "width:100vw" : "min-width:10em"')
       q-card-section
         q-item
           q-item-section

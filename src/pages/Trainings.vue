@@ -1,7 +1,7 @@
 <template lang="pug">
   q-page#trainings-list.flex.flex-center(padding)
     q-table.sticky-header-table(
-      :style='$q.screen.lt.sm ? "width: 100vw" : "min-width:360px"'
+      :style='$q.screen.lt.sm ? "width: 100vw" : "min-width:10em"'
       title="Trainings"
       :data="trainingsList"
       :columns="columns"
@@ -19,8 +19,8 @@
       template(v-slot:top-right)
         q-btn(
           v-if='!selected.length'
-          size='sm'
           rounded
+          size='sm'
           color="deep-orange"
           :loading="loading"
           exact
@@ -48,9 +48,9 @@
           q-td(key='dateTimeStamp' :props='props') {{ formatDate(props.row.dateTimeStamp, 'DD.MM.YYYY HH:mm') }}
           q-td(key='rate' :props='props') {{ props.row.rate }}
           q-td(key='avgBallRating' :props='props')
-            q-badge(square color='secondary') {{ props.row.avgBallRating }}
+            q-badge(square color='info') {{ (props.row.avgBallRating * 20).toFixed() }} %
           q-td(key='action' :props='props')
-            q-btn(round size='xs' @click='onClickRow(props.row)')
+            q-btn(round size='sm' @click='onClickRow(props.row)')
               q-icon(name='mdi-chevron-right' size='24px')
 
       //- template(v-slot:top-selection)
@@ -66,18 +66,18 @@
           borderless
           :value="pagination.rowsPerPage"
           :options="rowsPerPageOptions"
-          style="width: 85px"
+          style="width: 6em"
           @input='onRowsPerPageChanged($event)'
         )
         q-space
         q-pagination(
-          size='sm'
           :value="pagination.page"
           :max="Math.trunc(pagination.rowsNumber / pagination.rowsPerPage)"
           :max-pages='$q.screen.lt.sm ? 5 : 7'
           :direction-links="true"
           @input='onPageChanged($event)'
         )
+          //- size='sm'
           //- :size='$q.screen.lt.md ? "sm" : "md"'
 
 </template>
@@ -132,18 +132,18 @@ export default class PageTrainings extends Vue {
       sortable: true
     },
     {
-      name: 'avgBallRating',
+      name: 'rate',
       align: 'center',
-      label: 'Avg',
-      field: row => row.avgBallRating,
+      label: 'Rate',
+      field: row => row.rate,
       // format: val => `${val}%`,
       sortable: false
     },
     {
-      name: 'rate',
+      name: 'avgBallRating',
       align: 'center',
-      label: 'Rate, %',
-      field: row => row.rate,
+      label: 'Avg Rate',
+      field: row => row.avgBallRating,
       // format: val => `${val}%`,
       sortable: false
     },

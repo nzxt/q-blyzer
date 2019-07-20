@@ -1,6 +1,6 @@
 <template lang="pug">
   q-card(flat)
-    q-card-section.row.q-pt-none.q-pb-sm
+    q-card-section.row.q-pt-none
       .text-h6 Shots
       q-space
       q-btn(
@@ -9,7 +9,7 @@
         rounded
         @click='$emit("change:component", "Balls")'
       )
-        q-icon(left name='mdi-plus')
+        q-icon(left name='mdi-plus-circle')
         | Add shots
 
     q-card-section.q-pa-none(v-if='trainingDetails.length')

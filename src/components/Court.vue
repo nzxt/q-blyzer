@@ -256,7 +256,7 @@ export default class Court extends Vue {
     const scale = (this.$refs.stage as any).getStage().scale()
     const length = Math.round(Math.sqrt((width / scale.x) ** 2 + (height / scale.y) ** 2))
 
-    const distance = length / 100
+    const distance = +(length / 100).toFixed(1)
     this.setShotDistance(distance)
 
     Object.assign(this.configDistanceText, {

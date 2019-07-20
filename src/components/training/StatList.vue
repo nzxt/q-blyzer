@@ -42,12 +42,11 @@
           borderless
           :value="pagination.rowsPerPage"
           :options="rowsPerPageOptions"
-          style="width: 85px"
+          style="width: 6em"
           @input='pagination.rowsPerPage = $event'
         )
         q-space
         q-pagination(
-          size='sm'
           :value="pagination.page"
           :max="Math.trunc(pagination.rowsNumber / pagination.rowsPerPage)"
           :max-pages='$q.screen.lt.sm ? 5 : 7'
@@ -86,7 +85,7 @@ export default class StatList extends Vue {
     },
     {
       name: 'distance',
-      label: 'Distance',
+      label: 'Dist',
       align: 'left',
       field: row => row.distance,
       // format: val => `${val}m`,
@@ -94,7 +93,7 @@ export default class StatList extends Vue {
     },
     {
       name: 'avgRating',
-      label: 'Avg Rate',
+      label: 'Rate',
       align: 'center',
       field: row => row.avgRating,
       // format: val => `${val.toFixed(1)}`,
@@ -102,7 +101,7 @@ export default class StatList extends Vue {
     },
     {
       name: 'count',
-      label: 'Count',
+      label: 'Balls',
       align: 'center',
       field: row => row.count,
       // format: val => `${val}`,

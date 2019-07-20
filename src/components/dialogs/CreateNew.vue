@@ -5,7 +5,7 @@
     transition-hide="flip-up"
     @before-hide='$emit("before-hide")'
   )
-    q-card(:style='$q.screen.lt.sm ? "width: 100vw" : "min-width: 360px"')
+    q-card(:style='$q.screen.lt.sm ? "width: 100vw" : "min-width:10em"')
       q-card-section
         .text-h6 Create new..
       q-card-section.row.q-gutter-md

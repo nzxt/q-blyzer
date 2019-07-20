@@ -10,6 +10,7 @@
       )
     //- q-breadcrumbs-el(icon='mdi-home' to='/')
     q-breadcrumbs-el(
+      style='font-size: 1.3em'
       v-for='item in items'
       :key='item.label'
       :label='item.label'

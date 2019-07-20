@@ -43,7 +43,7 @@ export default class StatPie extends Vue {
   get pieChartOptions (): any {
     if (!this.data) return {}
     const labels = this.data.reduce((acc, item) => {
-      acc.push(`${item.shotTypeAbbr}(${item.shotDistanceName})`)
+      acc.push(`${item.shotTypeName} (${item.shotDistanceName})`)
       return acc
     }, [])
     return { labels, ...this.chartOptions }

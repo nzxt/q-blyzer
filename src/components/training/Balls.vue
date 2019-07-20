@@ -2,25 +2,32 @@
   #balls
     q-card(flat)
       q-card-section.text-center(v-if='shotType && shotDistance')
-        .text-h6 {{ getShotTypeName(shotType) }} @ {{ shotDistance.toFixed(1) }}m
+        .text-h6 {{ getShotTypeName(shotType) }} @ {{ shotDistance }}m
 
-      q-card-section(style='height: calc(100vh - 465px)')
-        q-avatar(
-          size='30px'
+      q-card-section(:style='`height: calc(100vh - ${bottomActionsHeight+175}px)`')
+        //- q-avatar(
+        //-   size='2.5em'
+        //-   v-for='ball in balls'
+        //-   :key='ball.id'
+        //- )
+        q-icon(
           v-for='ball in balls'
           :key='ball.id'
+          size='2.7em'
+          color='primary'
+          :name='shotIcon(ball.rating)'
         )
-          q-icon(size='30px' color='primary' :name='shotIcon(ball.rating)')
 
-        q-icon.mdi-spin(size='30px' color='grey-5' name='mdi-star-circle-outline')
+        //- q-avatar(size='2.5em')
+        q-icon.mdi-spin(size='2.7em' color='grey-5' name='mdi-star-circle-outline')
 
-      q-card-actions.column.q-ma-sm.fixed-bottom.bg-white
+      q-card-actions#bottom-actions.column.q-ma-sm.fixed-bottom.bg-white
         .row.justify-center
           .text-subtitle1.text-grey-6 Rate Shot {{ `#${shotIndex}` }}
         .row.justify-center
-          q-rating.q-pb-md(
+          q-rating.q-pb-xl(
             v-model="shotRating"
-            size="3.5em"
+            size="4.5em"
             color="warning"
             icon="mdi-star-outline"
             @input='onRateShot'
@@ -40,6 +47,8 @@
       :dialog='dialogChooseExercise'
       @before-hide='dialogChooseExercise = false'
     )
+
+    q-resize-observer(@resize="onResize")
 </template>
 
 <script lang="ts">
@@ -58,6 +67,7 @@ const TrainingNS = namespace('training')
 })
 export default class TrainingBalls extends Vue {
   dialogChooseExercise: Boolean = false
+  bottomActionsHeight: number = 0
 
   loading: Boolean = false
   shotRating: number = 0
@@ -103,7 +113,7 @@ export default class TrainingBalls extends Vue {
     setTimeout(() => {
       this.loading = false
       this.shotRating = 0
-    }, 680)
+    }, 380)
   }
 
   onUndo () {
@@ -140,10 +150,14 @@ export default class TrainingBalls extends Vue {
   get shotIndex (): number {
     return this.balls.length + 1
   }
+
+  onResize () {
+    this.bottomActionsHeight = (document as any).getElementById('bottom-actions').clientHeight
+  }
 }
 </script>
 
 <style lang="stylus" scoped>
   #balls
-    max-width 360px
+    max-width 10em
 </style>

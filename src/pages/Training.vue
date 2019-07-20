@@ -1,6 +1,6 @@
 <template lang="pug">
   q-page.flex.justify-center(padding)
-    q-card(:style='$q.screen.lt.sm ? "width: 100vw" : "min-width:360px"')
+    q-card(:style='$q.screen.lt.sm ? "width: 100vw" : "min-width:10em"')
       q-card-section
         Breadcrumbs(:items='breadcrumbs')
       q-card-section.q-pa-none
