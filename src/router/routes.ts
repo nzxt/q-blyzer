@@ -36,7 +36,7 @@ const routes: RouteConfig[] = [
 if (process.env.MODE !== 'ssr') {
   routes.push({
     path: '*',
-    component: () => import('src/pages/Error404')
+    component: () => import('src/pages/Error404.vue')
   })
 }
 
