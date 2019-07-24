@@ -91,7 +91,8 @@ export default class DialogInitializeTraining extends Vue {
   }
 
   get dateTimeStamp (): Date {
-    return date.extractDate(`${this.dateStamp} ${this.timeStamp}`, 'YYYY/MM/DD HH:mm')
+    // return date.extractDate(`${this.dateStamp} ${this.timeStamp}`, 'YYYY/MM/DD HH:mm')
+    return new Date(`${this.dateStamp} ${this.timeStamp}`)
   }
 }
 </script>

@@ -21,7 +21,7 @@
         //- q-avatar(size='2.5em')
         q-icon.mdi-spin(size='2.7em' color='grey-5' name='mdi-star-circle-outline')
 
-      q-card-actions#bottom-actions.column.q-ma-sm.fixed-bottom.bg-white
+      q-card-actions#bottom-actions.column.q-ma-sm.fixed-bottom
         .row.justify-center
           .text-subtitle1.text-grey-6 Rate Shot {{ `#${shotIndex}` }}
         .row.justify-center

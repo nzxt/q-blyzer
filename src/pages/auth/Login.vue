@@ -65,8 +65,8 @@ export default {
     return {
       data: {
         body: {
-          username: 'admin',
-          password: 'qwerty'
+          username: '',
+          password: ''
         },
         rememberMe: false
       },

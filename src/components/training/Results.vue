@@ -34,6 +34,7 @@ export default class TrainingResults extends Vue {
   @TrainingNS.Action('fetchById') fetchTrainingDetails
 
   mounted () {
+    if (!this.training) return
     this.fetchTrainingDetails(this.training.id)
   }
 

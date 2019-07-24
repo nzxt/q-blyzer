@@ -11,7 +11,7 @@ export interface ITraining {
 
 export class Training implements ITraining {
   constructor (
-    dateTimeStamp: Date = new Date(),
+    dateTimeStamp: Date,
     appUserId: string
   ) {
     this.dateTimeStamp = dateTimeStamp
