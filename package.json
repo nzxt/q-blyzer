@@ -47,7 +47,7 @@
     "eslint": "^5.16.0",
     "eslint-loader": "^2.2.1",
     "eslint-plugin-vue": "^5.2.3",
-    "pug": "^2.0.4",
+    "pug": "^3.0.1",
     "pug-plain-loader": "^1.0.0",
     "quasar-app-extension-auth-token-based": "^0.1.0",
     "typescript": "^3.5.3"
